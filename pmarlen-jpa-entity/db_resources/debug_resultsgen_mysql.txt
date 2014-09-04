@@ -1,0 +1,295 @@
+====================== END PARSE XML ========================
+->Tables {
+	Linea_Multimedio {
+		[1] [Linea_id] integer(10,0) FOREIGN_KEY_OF Linea(id) NOT NULL	
+		[2] [Multimedio_id] integer(10,0) FOREIGN_KEY_OF Multimedio(id) NOT NULL	
+		,Indexes {
+		}
+	}
+
+	Almacen {
+		[1] ++[id] integer(10,0) NOT NULL	
+		[2] Sucursal_id integer(10,0) FOREIGN_KEY_OF Sucursal(id) NOT NULL	
+		[3] tipo_almacen integer(10,0) NOT NULL	
+		,Indexes {
+		}
+	}
+
+	Evento_Sincronizacion {
+		[1] [fecha_evento] timestamp(0,0) NOT NULL	
+		[2] tipo_evento integer(1,0) NOT NULL	
+		[3] afectacion_global integer(1,0) NOT NULL	
+		[4] sucursal_id_afectada integer(5,0) NOT NULL	
+		[5] Tabla varchar(64,0) NOT NULL	
+		[6] campos_llave varchar(64,0) NOT NULL	
+		[7] valores_llave varchar(128,0) NOT NULL	
+		,Indexes {
+		}
+	}
+
+	Usuario_Perfil {
+		[1] [Usuario_id] varchar(16,0) FOREIGN_KEY_OF Usuario(id) NOT NULL	
+		[2] [Perfil_id] varchar(16,0) FOREIGN_KEY_OF Perfil(id) NOT NULL	
+		,Indexes {
+		}
+	}
+
+	Producto {
+		[1] ++[id] integer(10,0) NOT NULL	
+		[2] codigo_barras varchar(64,0) NOT NULL	
+		[3] Marca_id integer(10,0) FOREIGN_KEY_OF Marca(id) NOT NULL	
+		[4] nombre varchar(255,0) NOT NULL	
+		[5] presentacion varchar(255,0) NOT NULL	
+		[6] unidades_por_caja integer(10,0) NOT NULL	
+		[7] unidad_medida varchar(8,0) NOT NULL	
+		[8] costo double(19,4) NOT NULL	
+		[9] costo_venta double(19,2) NOT NULL	
+		[10] contenido varchar(16,0)	
+		[11] abrebiatura varchar(128,0)	
+		[12] precio_venta_tmp double(10,0)	
+		[13] cantidad_actual_tmp integer(10,0)	
+		,Indexes {
+		}
+	}
+
+	Usuario {
+		[1] [id] varchar(16,0) NOT NULL	
+		[2] habilitado integer(1,0) NOT NULL	
+		[3] nombre_completo varchar(128,0) NOT NULL	
+		[4] password varchar(64,0) NOT NULL	
+		[5] email varchar(64,0)	
+		[6] Sucursal_id integer(10,0) FOREIGN_KEY_OF Sucursal(id)	
+		,Indexes {
+		}
+	}
+
+	CFD_Venta {
+		[1] ++[id] integer(10,0) NOT NULL	
+		[2] ultima_actualizacion timestamp(0,0) NOT NULL	
+		[3] contenido_original_xml varchar(102400,0)	
+		[4] calling_error_result varchar(1024,0)	
+		,Indexes {
+		}
+	}
+
+	Industria_Multimedio {
+		[1] [Industria_id] integer(10,0) FOREIGN_KEY_OF Industria(id) NOT NULL	
+		[2] [Multimedio_id] integer(10,0) FOREIGN_KEY_OF Multimedio(id) NOT NULL	
+		,Indexes {
+		}
+	}
+
+	Movimiento_operativo_almacen {
+		[1] ++[id] integer(10,0) NOT NULL	
+		[2] motivo varchar(255,0) NOT NULL	
+		[3] Usuario_id varchar(16,0) FOREIGN_KEY_OF Usuario(id) NOT NULL	
+		[4] fecha_inicio timestamp(0,0) NOT NULL	
+		[5] Almacen_origen integer(10,0) FOREIGN_KEY_OF Almacen(id) NOT NULL	
+		[6] Almacen_destino integer(10,0) FOREIGN_KEY_OF Almacen(id) NOT NULL	
+		[7] Tipo_Movimiento_id integer(10,0) NOT NULL	
+		[8] fecha_confirmacion integer(10,0)	
+		,Indexes {
+		}
+	}
+
+	Marca_Multimedio {
+		[1] [Marca_id] integer(10,0) FOREIGN_KEY_OF Marca(id) NOT NULL	
+		[2] [Multimedio_id] integer(10,0) FOREIGN_KEY_OF Multimedio(id) NOT NULL	
+		,Indexes {
+		}
+	}
+
+	Movimiento_Historico_Producto {
+		[1] ++[id] integer(10,0) NOT NULL	
+		[2] Almacen_id integer(10,0) FOREIGN_KEY_OF Almacen(id) NOT NULL	
+		[3] Producto_id integer(10,0) FOREIGN_KEY_OF Producto(id) NOT NULL	
+		[4] fecha timestamp(0,0) NOT NULL	
+		[5] tipo_movimiento integer(10,0) NOT NULL	
+		[6] cantidad integer(10,0) NOT NULL	
+		[7] costo double(19,0)	
+		[8] precio double(19,0)	
+		[9] Usuario_id varchar(16,0) FOREIGN_KEY_OF Usuario(id) NOT NULL	
+		,Indexes {
+		}
+	}
+
+	Multimedio {
+		[1] ++[id] integer(10,0) NOT NULL	
+		[2] mime_type varchar(64,0) NOT NULL	
+		[3] ruta_contenido varchar(512,0) NOT NULL	
+		[4] size_bytes integer(10,0) NOT NULL	
+		[5] nombre_archivo varchar(255,0) NOT NULL	
+		,Indexes {
+		}
+	}
+
+	Entrada_almacen {
+		[1] [id] integer(10,0) NOT NULL	
+		[2] Almacen_id integer(10,0) FOREIGN_KEY_OF Almacen(id) NOT NULL	
+		[3] Usuario_id varchar(16,0) FOREIGN_KEY_OF Usuario(id) NOT NULL	
+		[4] fecha timestamp(0,0) NOT NULL	
+		[5] comentarios varchar(255,0)	
+		[6] descuento_aplicado double(19,0)	
+		,Indexes {
+		}
+	}
+
+	Producto_Multimedio {
+		[1] [Producto_id] integer(10,0) FOREIGN_KEY_OF Producto(id) NOT NULL	
+		[2] [Multimedio_id] integer(10,0) FOREIGN_KEY_OF Multimedio(id) NOT NULL	
+		,Indexes {
+		}
+	}
+
+	Marca {
+		[1] ++[id] integer(10,0) NOT NULL	
+		[2] Industria_id integer(10,0) FOREIGN_KEY_OF Industria(id) NOT NULL	
+		[3] Linea_id integer(10,0) FOREIGN_KEY_OF Linea(id) NOT NULL	
+		[4] nombre varchar(64,0) NOT NULL	
+		,Indexes {
+		}
+	}
+
+	Movimiento_operativo_almacen_Detalle {
+		[1] ++[id] integer(10,0) NOT NULL	
+		[2] Movimiento_operativo_almacen_id integer(10,0) FOREIGN_KEY_OF Movimiento_operativo_almacen(id) NOT NULL	
+		[3] Producto_id integer(10,0) FOREIGN_KEY_OF Producto(id) NOT NULL	
+		[4] cantidad integer(10,0) NOT NULL	
+		,Indexes {
+		}
+	}
+
+	Linea {
+		[1] ++[id] integer(10,0) NOT NULL	
+		[2] nombre varchar(128,0) NOT NULL	
+		,Indexes {
+		}
+	}
+
+	Metodo_De_Pago {
+		[1] ++[id] integer(10,0) NOT NULL	
+		[2] descripcion varchar(255,0) NOT NULL	
+		,Indexes {
+		}
+	}
+
+	Perfil {
+		[1] [id] varchar(16,0) NOT NULL	
+		[2] descripcion varchar(255,0) NOT NULL	
+		,Indexes {
+		}
+	}
+
+	Almacen_Producto {
+		[1] ++[id] integer(10,0) NOT NULL	
+		[2] Almacen_id integer(10,0) FOREIGN_KEY_OF Almacen(id) NOT NULL	
+		[3] Producto_id integer(10,0) FOREIGN_KEY_OF Producto(id) NOT NULL	
+		[4] cantidad_actual integer(15,0) NOT NULL	
+		[5] precio_venta double(19,0) NOT NULL	
+		[6] precio_mayoreo double(19,0) NOT NULL	
+		[7] costo double(19,0)	
+		,Indexes {
+		}
+	}
+
+	Pedido_Venta_Detalle {
+		[1] ++[id] integer(10,0) NOT NULL	
+		[2] Pedido_Venta_id integer(10,0) FOREIGN_KEY_OF Pedido_Venta(id) NOT NULL	
+		[3] Almacen_id integer(10,0) FOREIGN_KEY_OF Almacen(id) NOT NULL	
+		[4] Producto_id integer(10,0) FOREIGN_KEY_OF Producto(id) NOT NULL	
+		[5] cantidad integer(10,0) NOT NULL	
+		[6] precio_venta double(19,0) NOT NULL	
+		,Indexes {
+		}
+	}
+
+	Forma_De_Pago {
+		[1] ++[id] integer(10,0) NOT NULL	
+		[2] descripcion varchar(255,0) NOT NULL	
+		,Indexes {
+		}
+	}
+
+	Cliente {
+		[1] ++[id] integer(10,0) NOT NULL	
+		[2] RFC varchar(16,0) NOT NULL	
+		[3] razon_social varchar(128,0) NOT NULL	
+		[4] nombre_establecimiento varchar(128,0)	
+		[5] contacto varchar(128,0)	
+		[6] telefonos varchar(128,0)	
+		[7] email varchar(64,0)	
+		[8] observaciones varchar(255,0)	
+		[9] direccion varchar(255,0)	
+		,Indexes {
+		}
+	}
+
+	Configuracion_Sistema {
+		[1] [llave] varchar(128,0) NOT NULL	
+		[2] valor varchar(255,0) NOT NULL	
+		,Indexes {
+		}
+	}
+
+	Pedido_Venta {
+		[1] ++[id] integer(10,0) NOT NULL	
+		[2] estado integer(10,0) NOT NULL	
+		[3] fecha_actualizacion timestamp(0,0) NOT NULL	
+		[4] Usuario_id varchar(16,0) FOREIGN_KEY_OF Usuario(id) NOT NULL	
+		[5] Cliente_id integer(10,0) FOREIGN_KEY_OF Cliente(id)	
+		[6] Forma_De_Pago_id integer(10,0) FOREIGN_KEY_OF Forma_De_Pago(id)	
+		[7] Metodo_De_Pago_id integer(10,0) FOREIGN_KEY_OF Metodo_De_Pago(id)	
+		[8] factorIVA double(19,0) NOT NULL	
+		[9] comentarios varchar(255,0)	
+		[10] descuento_aplicado double(19,0)	
+		[11] facturable integer(1,0)	
+		[12] CFD_Venta_id integer(10,0) FOREIGN_KEY_OF CFD_Venta(id)	
+		[13] numero_ticket varchar(128,0)	
+		[14] caja integer(2,0)	
+		[15] importe_recibido double(19,0)	
+		[16] aprobacion_visa_mastercard varchar(64,0)	
+		[17] mayoreo integer(1,0)	
+		[18] porcentaje_descuento_calculado integer(2,0)	
+		[19] porcentaje_descuento_extra integer(2,0)	
+		[20] condiciones_de_pago varchar(128,0)	
+		[21] num_de_cuenta varchar(32,0)	
+		[22] motivo_descuento varchar(128,0)	
+		,Indexes {
+		}
+	}
+
+	Industria {
+		[1] ++[id] integer(10,0) NOT NULL	
+		[2] nombre varchar(128,0) NOT NULL	
+		,Indexes {
+		}
+	}
+
+	Entrada_Almacen_Detalle {
+		[1] ++[id] integer(10,0) NOT NULL	
+		[2] Entrada_Almacen_id integer(10,0) FOREIGN_KEY_OF Entrada_almacen(id) NOT NULL	
+		[3] Producto_id integer(10,0) FOREIGN_KEY_OF Producto(id) NOT NULL	
+		[4] cantidad integer(10,0) NOT NULL	
+		[5] precio_venta double(19,0) NOT NULL	
+		[6] costo double(19,0) NOT NULL	
+		,Indexes {
+		}
+	}
+
+	Sucursal {
+		[1] ++[id] integer(10,0) NOT NULL	
+		[2] id_padre integer(10,0) FOREIGN_KEY_OF Sucursal(id)	
+		[3] nombre varchar(128,0) NOT NULL	
+		[4] direccion varchar(255,0)	
+		[5] telefonos varchar(128,0)	
+		[6] usuario_sicofi varchar(64,0)	
+		[7] password_sicofi varchar(64,0)	
+		[8] serie_sicofi varchar(4,0)	
+		[9] comentarios varchar(255,0)	
+		[10] descuento_mayoreo_habilitado integer(1,0)	
+		,Indexes {
+		}
+	}
+
+}
+
