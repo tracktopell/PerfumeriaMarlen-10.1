@@ -54,7 +54,8 @@
 		<module>pmarlen-commons</module>
 		<module>pmarlen-backend</module>
 		<module>pmarlen-rest-services</module>		
-		<module>pmarlen-rest-client</module>		
+		<module>pmarlen-rest-client</module>
+		<module>pmarlen-web</module>		
 	</modules>
 
 	<build>

@@ -1,0 +1,43 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 19/08/2014, 05:07:46 PM
+    Author     : alfredo
+*/
+
+.ui-widget, .ui-widget .ui-widget {
+    font-size: 90%;
+}
+
+.no-rounded-panel{
+	border-radius: 0px; 
+	border: none;
+}
+
+
+.preferencesPanel{
+    
+}
+
+body{
+	background-color:  #DCEBF2;
+}
+
+.footer-bar {
+	background: none repeat scroll 0 0 darkblue;
+    border-top: 3px solid orange;
+	color: yellow;
+    font: 50% 'Droid Sans',arial,sans-serif;
+	width: 100%;
+	left: 0px;
+    height: 30px;
+    margin: 0;
+    padding: 5px 0 0;
+    text-align: center;
+	bottom: 0px;
+	position: fixed;
+	display: block;
+}

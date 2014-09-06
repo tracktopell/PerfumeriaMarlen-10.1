@@ -1,0 +1,35 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/templates/mainWithMenu.xhtml">
+    
+    <ui:define name="title">
+        LINEA
+    </ui:define>
+
+    <ui:define name="body-title">
+        LINEA
+    </ui:define>
+    
+    <ui:define name="body">
+        
+		<h:panelGrid columns="1" >
+			<h:panelGrid columns="1">
+			LINEA	
+			</h:panelGrid>
+			
+			<p:dataTable var="linea" value="#{lineaMB.lineaList}">
+				<p:column headerText="Id">
+					<h:outputText value="#{linea.id}" />
+				</p:column>
+
+				<p:column headerText="NOMBRE">
+					<h:outputText value="#{linea.nombre}" />
+				</p:column>
+
+			</p:dataTable>
+		</h:panelGrid>
+    </ui:define>
+
+</ui:composition>
