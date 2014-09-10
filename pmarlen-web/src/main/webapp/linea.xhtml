@@ -1,6 +1,7 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:p="http://primefaces.org/ui"
                 template="/templates/mainWithMenu.xhtml">
     
@@ -19,16 +20,28 @@
 			LINEA	
 			</h:panelGrid>
 			
-			<p:dataTable var="linea" value="#{lineaMB.lineaList}">
-				<p:column headerText="Id">
+			<p:dataTable var="linea" value="#{lineaMB.lineaList}"
+						 paginator="true"
+						 rows="10"
+						 id="lineas"
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15">
+				<f:facet name="header">
+					LINEA
+					<p:commandButton id="toggler" type="button" value="Columnas" style="float:right" icon="ui-icon-calculator" />
+					<p:columnToggler datasource="lineas" trigger="toggler" />
+				</f:facet>
+				
+				<p:column headerText="Id" sortBy="#{linea.id}">
 					<h:outputText value="#{linea.id}" />
 				</p:column>
 
-				<p:column headerText="NOMBRE">
+				<p:column headerText="NOMBRE" sortBy="#{linea.nombre}">
 					<h:outputText value="#{linea.nombre}" />
 				</p:column>
 
 			</p:dataTable>
+
 		</h:panelGrid>
     </ui:define>
 

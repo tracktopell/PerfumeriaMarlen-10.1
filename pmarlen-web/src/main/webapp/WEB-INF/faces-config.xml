@@ -6,12 +6,24 @@
 				version="2.0">
 
     <application>
-		<!--
-        <variable-resolver>org.springframework.web.jsf.WebApplicationContextFacesELResolver</variable-resolver>
 		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
-		-->
-		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
-		
+
+        <locale-config>
+            <default-locale>es_MX</default-locale>
+            <supported-locale>es_MX</supported-locale>
+            <supported-locale>en</supported-locale>
+        </locale-config>
+
+        <message-bundle>com.pmarlen.web.common.view.properties.UIMessages</message-bundle>
+
+        <resource-bundle>
+            <base-name>com.pmarlen.web.common.view.properties.UIMessages</base-name>
+            <var>UIMessages</var>
+        </resource-bundle>
+		<resource-bundle>
+			<base-name>com.pmarlen.web.common.view.properties.UIEntityLabels</base-name>
+            <var>UIEntityLabels</var>
+		</resource-bundle>		
     </application>
 
 </faces-config>
