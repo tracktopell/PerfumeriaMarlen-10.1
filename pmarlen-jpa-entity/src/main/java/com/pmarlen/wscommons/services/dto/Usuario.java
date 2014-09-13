@@ -2,29 +2,30 @@
 package com.pmarlen.wscommons.services.dto;
 
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.Collection;
+import java.util.List;
 import java.util.Set;
-import java.util.Collection;
-import java.util.Collection;
 
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Embeddable;
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.EmbeddedId;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -36,16 +37,16 @@ import javax.persistence.TemporalType;
  * 
  * @author Tracktopell::jpa-builder @see  https://github.com/tracktopell/UtilProjects/tree/master/jpa-builder
  * @version 0.8.5
- * @date 2014/08/27 07:01
+ * @date 2014/09/11 12:55
  */
 
 public class Usuario implements java.io.Serializable {
-    private static final long serialVersionUID = 1410508107;
+    private static final long serialVersionUID = 1366415098;
     
     /**
-    * id
+    * email
     */
-    private String id;
+    private String email;
     
     /**
     * habilitado
@@ -63,15 +64,20 @@ public class Usuario implements java.io.Serializable {
     private String password;
     
     /**
-    * email
-    */
-    private String email;
-    
-    /**
     * sucursal id
     */
     private Integer sucursalId;
+	
+	private List<Perfil> perfilList;
 
+	public void setPerfilList(List<Perfil> perfilList) {
+		this.perfilList = perfilList;
+	}
+
+	public List<Perfil> getPerfilList() {
+		return perfilList;
+	}
+	
     /** 
      * Default Constructor
      */
@@ -82,31 +88,34 @@ public class Usuario implements java.io.Serializable {
      * JPA Entity Constructor
      */
     public Usuario(com.pmarlen.model.beans.Usuario jpaEntity) {
-        this.id = jpaEntity.getId();
-        this.habilitado = jpaEntity.getHabilitado();
-        this.nombreCompleto = jpaEntity.getNombreCompleto();
-        this.password = jpaEntity.getPassword();
-        this.email = jpaEntity.getEmail();
-        this.sucursalId = jpaEntity.getSucursal().getId(); // normalized 
+        // this.email = jpaEntity.getEmail()!=null?jpaEntity.getEmail():null; // bug ?
+        this.email = jpaEntity.getEmail(); // fixed
+        // this.habilitado = jpaEntity.getHabilitado()!=null?jpaEntity.getHabilitado():null; // bug ?
+        this.habilitado = jpaEntity.getHabilitado(); // fixed
+        // this.nombreCompleto = jpaEntity.getNombreCompleto()!=null?jpaEntity.getNombreCompleto():null; // bug ?
+        this.nombreCompleto = jpaEntity.getNombreCompleto(); // fixed
+        // this.password = jpaEntity.getPassword()!=null?jpaEntity.getPassword():null; // bug ?
+        this.password = jpaEntity.getPassword(); // fixed
+        this.sucursalId = jpaEntity.getSucursal()!=null?jpaEntity.getSucursal().getId():null; // normalized 
     }
 	
     /** 
      * lazy Constructor just with IDs
      */
-    public Usuario( String id ) {
-        this.id 	= 	id;
+    public Usuario( String email ) {
+        this.email 	= 	email;
 
     }
     
     /**
      * Getters and Setters
      */
-    public String getId() {
-        return this.id;
+    public String getEmail() {
+        return this.email;
     }
 
-    public void setId(String v) {
-        this.id = v;
+    public void setEmail(String v) {
+        this.email = v;
     }
 
     public int getHabilitado() {
@@ -133,14 +142,6 @@ public class Usuario implements java.io.Serializable {
         this.password = v;
     }
 
-    public String getEmail() {
-        return this.email;
-    }
-
-    public void setEmail(String v) {
-        this.email = v;
-    }
-
     public Integer  getSucursalId() {
         return this.sucursalId;
     }
@@ -153,12 +154,11 @@ public class Usuario implements java.io.Serializable {
     public com.pmarlen.model.beans.Usuario buildJpaEntity(){
         com.pmarlen.model.beans.Usuario jpaEntity = new com.pmarlen.model.beans.Usuario();
 
-        jpaEntity.setId( this.getId());
+        jpaEntity.setEmail( this.getEmail());
         jpaEntity.setHabilitado( this.getHabilitado());
         jpaEntity.setNombreCompleto( this.getNombreCompleto());
         jpaEntity.setPassword( this.getPassword());
-        jpaEntity.setEmail( this.getEmail());
-        jpaEntity.setSucursal( new com.pmarlen.model.beans.Sucursal(this.getSucursalId())); // normalized
+        jpaEntity.setSucursal( this.getSucursalId()!=null? new com.pmarlen.model.beans.Sucursal(this.getSucursalId()):null); // normalized
 
         return jpaEntity;
     }
@@ -167,7 +167,7 @@ public class Usuario implements java.io.Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash = (id != null ? id.hashCode() : 0 );
+        hash = (email != null ? email.hashCode() : 0 );
         return hash;
     }
 
@@ -179,7 +179,7 @@ public class Usuario implements java.io.Serializable {
         }
 
     	Usuario other = (Usuario ) o;
-        if ( (this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ( (this.email == null && other.email != null) || (this.email != null && !this.email.equals(other.email))) {
             return false;
         }
 

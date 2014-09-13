@@ -35,7 +35,7 @@ import javax.persistence.TemporalType;
  * m2m
  * @author Tracktopell::jpa-builder @see  https://github.com/tracktopell/UtilProjects/tree/master/jpa-builder
  * @version 0.8.5
- * @date 2014/08/27 07:01
+ * @date 2014/09/11 12:55
  */
 
 
@@ -43,21 +43,21 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "PERFIL")
 public class Perfil implements java.io.Serializable {
-    private static final long serialVersionUID = 1405075009;
+    private static final long serialVersionUID = 621779526;
     
     /**
     * id
     */
     @Id
     @Basic(optional = false)
-    @Column(name = "ID" , length=16  )
+    @Column(name = "ID" , length=32  )
     private String id;
     
     /**
     * descripcion
     */
     @Basic(optional = false)
-    @Column(name = "DESCRIPCION" , length=255  )
+    @Column(name = "DESCRIPCION" , length=32  )
     private String descripcion;
     
     @ManyToMany(mappedBy = "perfilCollection")
@@ -133,7 +133,7 @@ public class Perfil implements java.io.Serializable {
 
     @Override
     public String toString() {
-        return descripcion;
+        return "com.pmarlen.model.beans.Perfil[id = "+id+ "]";
     }
 
 }

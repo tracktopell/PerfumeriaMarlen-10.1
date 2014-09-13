@@ -22,11 +22,14 @@
 
 				<h:panelGrid columns="2" style="width: 100%">
 					<h:panelGrid columns="2" >
-						<p:graphicImage value="images/turboload/Logo_T2.gif" />
+						
+						<h:outputLink id="link1" value="#{request.contextPath}/pages/home.jsf">
+							<p:graphicImage value="/images/turboload/Logo_T2.gif" alt="(LOGO)" title="PERFUMERIA-MARLEN > INICIO"/>
+						</h:outputLink>
 						<h:panelGrid columns="1">
-							<h:outputText value="PERFUMERIA MARLEN S.A. DE C.V." style="font: normal 100% 'News Cycle', arial, sans-serif;"/>
-							<h:outputText value="DISTRIBUCIONES"					 style="font: normal 60% 'News Cycle', arial, sans-serif;"/>
-						</h:panelGrid>								
+							<h:outputText value="PERFUMERIA MARLEN S.A. DE C.V."	style="font: normal 100% 'News Cycle', arial, sans-serif;"/>
+							<h:outputText value="DISTRIBUCIONES"					style="font: normal 60%  'News Cycle', arial, sans-serif;"/>
+						</h:panelGrid>
 					</h:panelGrid>
 					<p:menubar>
 						<p:submenu label="OPERACION" icon="ui-icon-document">
@@ -49,9 +52,9 @@
 						</p:submenu>
 
 						<f:facet name="options">									
-							<p:menuButton value="Alfredo Estrada">
-								<p:menuitem value="SALIR" url="http://www.primefaces.org" icon="ui-icon-extlink" />
-								<p:menuitem value="AYUDA" url="http://www.primefaces.org" icon="ui-icon-help"/>
+							<p:menuButton value="#{sessionUserMB.usuarioAuthenticated.nombreCompleto}">
+								<p:menuitem value="SALIR" url="/logout" icon="ui-icon-extlink" />
+								<p:menuitem value="AYUDA" url="#{request.contextPath}/pages/home.jsf" icon="ui-icon-help"/>
 
 							</p:menuButton>
 						</f:facet>

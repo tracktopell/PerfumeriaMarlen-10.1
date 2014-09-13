@@ -36,11 +36,11 @@ import javax.persistence.TemporalType;
  * 
  * @author Tracktopell::jpa-builder @see  https://github.com/tracktopell/UtilProjects/tree/master/jpa-builder
  * @version 0.8.5
- * @date 2014/08/27 07:01
+ * @date 2014/09/11 12:55
  */
 
 public class EventoSincronizacion implements java.io.Serializable {
-    private static final long serialVersionUID = 28841125;
+    private static final long serialVersionUID = 1283284357;
     
     /**
     * fecha evento
@@ -87,13 +87,20 @@ public class EventoSincronizacion implements java.io.Serializable {
      * JPA Entity Constructor
      */
     public EventoSincronizacion(com.pmarlen.model.beans.EventoSincronizacion jpaEntity) {
-        this.fechaEvento = jpaEntity.getFechaEvento();
-        this.tipoEvento = jpaEntity.getTipoEvento();
-        this.afectacionGlobal = jpaEntity.getAfectacionGlobal();
-        this.sucursalIdAfectada = jpaEntity.getSucursalIdAfectada();
-        this.tabla = jpaEntity.getTabla();
-        this.camposLlave = jpaEntity.getCamposLlave();
-        this.valoresLlave = jpaEntity.getValoresLlave();
+        // this.fechaEvento = jpaEntity.getFechaEvento()!=null?jpaEntity.getFechaEvento():null; // bug ?
+        this.fechaEvento = jpaEntity.getFechaEvento(); // fixed
+        // this.tipoEvento = jpaEntity.getTipoEvento()!=null?jpaEntity.getTipoEvento():null; // bug ?
+        this.tipoEvento = jpaEntity.getTipoEvento(); // fixed
+        // this.afectacionGlobal = jpaEntity.getAfectacionGlobal()!=null?jpaEntity.getAfectacionGlobal():null; // bug ?
+        this.afectacionGlobal = jpaEntity.getAfectacionGlobal(); // fixed
+        // this.sucursalIdAfectada = jpaEntity.getSucursalIdAfectada()!=null?jpaEntity.getSucursalIdAfectada():null; // bug ?
+        this.sucursalIdAfectada = jpaEntity.getSucursalIdAfectada(); // fixed
+        // this.tabla = jpaEntity.getTabla()!=null?jpaEntity.getTabla():null; // bug ?
+        this.tabla = jpaEntity.getTabla(); // fixed
+        // this.camposLlave = jpaEntity.getCamposLlave()!=null?jpaEntity.getCamposLlave():null; // bug ?
+        this.camposLlave = jpaEntity.getCamposLlave(); // fixed
+        // this.valoresLlave = jpaEntity.getValoresLlave()!=null?jpaEntity.getValoresLlave():null; // bug ?
+        this.valoresLlave = jpaEntity.getValoresLlave(); // fixed
     }
 	
     /** 

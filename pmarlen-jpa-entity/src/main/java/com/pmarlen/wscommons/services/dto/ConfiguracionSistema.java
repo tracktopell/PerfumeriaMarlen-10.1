@@ -36,11 +36,11 @@ import javax.persistence.TemporalType;
  * 
  * @author Tracktopell::jpa-builder @see  https://github.com/tracktopell/UtilProjects/tree/master/jpa-builder
  * @version 0.8.5
- * @date 2014/08/27 07:01
+ * @date 2014/09/11 12:55
  */
 
 public class ConfiguracionSistema implements java.io.Serializable {
-    private static final long serialVersionUID = 1970757086;
+    private static final long serialVersionUID = 1947208587;
     
     /**
     * llave
@@ -62,8 +62,10 @@ public class ConfiguracionSistema implements java.io.Serializable {
      * JPA Entity Constructor
      */
     public ConfiguracionSistema(com.pmarlen.model.beans.ConfiguracionSistema jpaEntity) {
-        this.llave = jpaEntity.getLlave();
-        this.valor = jpaEntity.getValor();
+        // this.llave = jpaEntity.getLlave()!=null?jpaEntity.getLlave():null; // bug ?
+        this.llave = jpaEntity.getLlave(); // fixed
+        // this.valor = jpaEntity.getValor()!=null?jpaEntity.getValor():null; // bug ?
+        this.valor = jpaEntity.getValor(); // fixed
     }
 	
     /** 

@@ -39,7 +39,7 @@ public class IndustriaService {
 		List<com.pmarlen.wscommons.services.dto.Industria> result=new ArrayList<com.pmarlen.wscommons.services.dto.Industria>();		
 
 		final List<Industria> jpaList = industriaJPAController.findAllEntities();
-		logger.debug("->getAll jpaList="+jpaList);
+		logger.debug("->getAll jpaList is null ?"+(jpaList==null));
 
 		com.pmarlen.wscommons.services.dto.Industria dto = null;
 		for(Industria l: jpaList){

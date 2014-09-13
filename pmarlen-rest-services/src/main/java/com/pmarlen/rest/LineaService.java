@@ -36,19 +36,19 @@ public class LineaService {
 	@RequestMapping(value = "getAll", method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody List<com.pmarlen.wscommons.services.dto.Linea> getAll() {	
 		logger.debug("->getAll invoked.");
-		List<com.pmarlen.wscommons.services.dto.Linea> result=new ArrayList<com.pmarlen.wscommons.services.dto.Linea>();		
+		List<com.pmarlen.wscommons.services.dto.Linea> resultLinea=new ArrayList<com.pmarlen.wscommons.services.dto.Linea>();		
 
-		final List<Linea> jpaList = lineaJPAController.findAllEntities();
-		logger.debug("->getAll jpaList="+jpaList);
+		final List<Linea> jpaLineaList = lineaJPAController.findAllEntities();
+		logger.debug("->getAll jpaList is null ?"+(jpaLineaList==null));
 
-		com.pmarlen.wscommons.services.dto.Linea dto = null;
-		for(Linea l: jpaList){
-			dto = new com.pmarlen.wscommons.services.dto.Linea(l);			
-			result.add(dto);
-			logger.debug("->getAll \tadd dto:"+dto);
+		com.pmarlen.wscommons.services.dto.Linea dtoLinea = null;
+		for(Linea xi: jpaLineaList){
+			dtoLinea = new com.pmarlen.wscommons.services.dto.Linea(xi);			
+			resultLinea.add(dtoLinea);
+			logger.debug("->getAll \tadd dto:"+dtoLinea);
 		}
 		
-		return result;
+		return resultLinea;
 	}
 
 	@RequestMapping(value = "/put",method = RequestMethod.POST,

@@ -1,7 +1,5 @@
 /*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
+user: #{sessionUserMB.usuarioAuthenticated.nombreCompleto}
 */
 /* 
     Created on : 19/08/2014, 05:07:46 PM
@@ -9,7 +7,7 @@ and open the template in the editor.
 */
 
 .ui-widget, .ui-widget .ui-widget {
-    font-size: 90%;
+    font-size: 80%;
 }
 
 .no-rounded-panel{

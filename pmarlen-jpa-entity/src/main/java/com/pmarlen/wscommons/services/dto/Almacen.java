@@ -36,11 +36,11 @@ import javax.persistence.TemporalType;
  * 
  * @author Tracktopell::jpa-builder @see  https://github.com/tracktopell/UtilProjects/tree/master/jpa-builder
  * @version 0.8.5
- * @date 2014/08/27 07:01
+ * @date 2014/09/11 12:55
  */
 
 public class Almacen implements java.io.Serializable {
-    private static final long serialVersionUID = 304855538;
+    private static final long serialVersionUID = 1260258275;
     
     /**
     * id
@@ -67,9 +67,11 @@ public class Almacen implements java.io.Serializable {
      * JPA Entity Constructor
      */
     public Almacen(com.pmarlen.model.beans.Almacen jpaEntity) {
-        this.id = jpaEntity.getId();
-        this.sucursalId = jpaEntity.getSucursal().getId(); // normalized 
-        this.tipoAlmacen = jpaEntity.getTipoAlmacen();
+        // this.id = jpaEntity.getId()!=null?jpaEntity.getId():null; // bug ?
+        this.id = jpaEntity.getId(); // fixed
+        this.sucursalId = jpaEntity.getSucursal()!=null?jpaEntity.getSucursal().getId():null; // normalized 
+        // this.tipoAlmacen = jpaEntity.getTipoAlmacen()!=null?jpaEntity.getTipoAlmacen():null; // bug ?
+        this.tipoAlmacen = jpaEntity.getTipoAlmacen(); // fixed
     }
 	
     /** 
@@ -112,7 +114,7 @@ public class Almacen implements java.io.Serializable {
         com.pmarlen.model.beans.Almacen jpaEntity = new com.pmarlen.model.beans.Almacen();
 
         jpaEntity.setId( this.getId());
-        jpaEntity.setSucursal( new com.pmarlen.model.beans.Sucursal(this.getSucursalId())); // normalized
+        jpaEntity.setSucursal( this.getSucursalId()!=null? new com.pmarlen.model.beans.Sucursal(this.getSucursalId()):null); // normalized
         jpaEntity.setTipoAlmacen( this.getTipoAlmacen());
 
         return jpaEntity;

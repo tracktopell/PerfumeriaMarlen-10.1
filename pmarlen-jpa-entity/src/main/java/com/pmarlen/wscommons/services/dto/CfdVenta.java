@@ -36,11 +36,11 @@ import javax.persistence.TemporalType;
  * 
  * @author Tracktopell::jpa-builder @see  https://github.com/tracktopell/UtilProjects/tree/master/jpa-builder
  * @version 0.8.5
- * @date 2014/08/27 07:01
+ * @date 2014/09/11 12:55
  */
 
 public class CfdVenta implements java.io.Serializable {
-    private static final long serialVersionUID = 1392517307;
+    private static final long serialVersionUID = 2061354276;
     
     /**
     * id
@@ -55,7 +55,7 @@ public class CfdVenta implements java.io.Serializable {
     /**
     * contenido original xml
     */
-    private String contenidoOriginalXml;
+    private byte[] contenidoOriginalXml;
     
     /**
     * calling error result
@@ -72,10 +72,14 @@ public class CfdVenta implements java.io.Serializable {
      * JPA Entity Constructor
      */
     public CfdVenta(com.pmarlen.model.beans.CfdVenta jpaEntity) {
-        this.id = jpaEntity.getId();
-        this.ultimaActualizacion = jpaEntity.getUltimaActualizacion();
-        this.contenidoOriginalXml = jpaEntity.getContenidoOriginalXml();
-        this.callingErrorResult = jpaEntity.getCallingErrorResult();
+        // this.id = jpaEntity.getId()!=null?jpaEntity.getId():null; // bug ?
+        this.id = jpaEntity.getId(); // fixed
+        // this.ultimaActualizacion = jpaEntity.getUltimaActualizacion()!=null?jpaEntity.getUltimaActualizacion():null; // bug ?
+        this.ultimaActualizacion = jpaEntity.getUltimaActualizacion(); // fixed
+        // this.contenidoOriginalXml = jpaEntity.getContenidoOriginalXml()!=null?jpaEntity.getContenidoOriginalXml():null; // bug ?
+        this.contenidoOriginalXml = jpaEntity.getContenidoOriginalXml(); // fixed
+        // this.callingErrorResult = jpaEntity.getCallingErrorResult()!=null?jpaEntity.getCallingErrorResult():null; // bug ?
+        this.callingErrorResult = jpaEntity.getCallingErrorResult(); // fixed
     }
 	
     /** 
@@ -105,11 +109,11 @@ public class CfdVenta implements java.io.Serializable {
         this.ultimaActualizacion = v;
     }
 
-    public String getContenidoOriginalXml() {
+    public byte[] getContenidoOriginalXml() {
         return this.contenidoOriginalXml;
     }
 
-    public void setContenidoOriginalXml(String v) {
+    public void setContenidoOriginalXml(byte[] v) {
         this.contenidoOriginalXml = v;
     }
 

@@ -36,11 +36,11 @@ import javax.persistence.TemporalType;
  * 
  * @author Tracktopell::jpa-builder @see  https://github.com/tracktopell/UtilProjects/tree/master/jpa-builder
  * @version 0.8.5
- * @date 2014/08/27 07:01
+ * @date 2014/09/11 12:55
  */
 
 public class Sucursal implements java.io.Serializable {
-    private static final long serialVersionUID = 1717922155;
+    private static final long serialVersionUID = 1973769562;
     
     /**
     * id
@@ -102,16 +102,25 @@ public class Sucursal implements java.io.Serializable {
      * JPA Entity Constructor
      */
     public Sucursal(com.pmarlen.model.beans.Sucursal jpaEntity) {
-        this.id = jpaEntity.getId();
-        this.idPadre = jpaEntity.getIdPadre().getId(); // custom
-        this.nombre = jpaEntity.getNombre();
-        this.direccion = jpaEntity.getDireccion();
-        this.telefonos = jpaEntity.getTelefonos();
-        this.usuarioSicofi = jpaEntity.getUsuarioSicofi();
-        this.passwordSicofi = jpaEntity.getPasswordSicofi();
-        this.serieSicofi = jpaEntity.getSerieSicofi();
-        this.comentarios = jpaEntity.getComentarios();
-        this.descuentoMayoreoHabilitado = jpaEntity.getDescuentoMayoreoHabilitado();
+        // this.id = jpaEntity.getId()!=null?jpaEntity.getId():null; // bug ?
+        this.id = jpaEntity.getId(); // fixed
+        this.idPadre = jpaEntity.getIdPadre()!=null?jpaEntity.getIdPadre().getId():null; // custom
+        // this.nombre = jpaEntity.getNombre()!=null?jpaEntity.getNombre():null; // bug ?
+        this.nombre = jpaEntity.getNombre(); // fixed
+        // this.direccion = jpaEntity.getDireccion()!=null?jpaEntity.getDireccion():null; // bug ?
+        this.direccion = jpaEntity.getDireccion(); // fixed
+        // this.telefonos = jpaEntity.getTelefonos()!=null?jpaEntity.getTelefonos():null; // bug ?
+        this.telefonos = jpaEntity.getTelefonos(); // fixed
+        // this.usuarioSicofi = jpaEntity.getUsuarioSicofi()!=null?jpaEntity.getUsuarioSicofi():null; // bug ?
+        this.usuarioSicofi = jpaEntity.getUsuarioSicofi(); // fixed
+        // this.passwordSicofi = jpaEntity.getPasswordSicofi()!=null?jpaEntity.getPasswordSicofi():null; // bug ?
+        this.passwordSicofi = jpaEntity.getPasswordSicofi(); // fixed
+        // this.serieSicofi = jpaEntity.getSerieSicofi()!=null?jpaEntity.getSerieSicofi():null; // bug ?
+        this.serieSicofi = jpaEntity.getSerieSicofi(); // fixed
+        // this.comentarios = jpaEntity.getComentarios()!=null?jpaEntity.getComentarios():null; // bug ?
+        this.comentarios = jpaEntity.getComentarios(); // fixed
+        // this.descuentoMayoreoHabilitado = jpaEntity.getDescuentoMayoreoHabilitado()!=null?jpaEntity.getDescuentoMayoreoHabilitado():null; // bug ?
+        this.descuentoMayoreoHabilitado = jpaEntity.getDescuentoMayoreoHabilitado(); // fixed
     }
 	
     /** 

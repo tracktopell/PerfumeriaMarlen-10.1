@@ -28,8 +28,8 @@
 	}
 
 	Usuario_Perfil {
-		[1] [Usuario_id] varchar(16,0) FOREIGN_KEY_OF Usuario(id) NOT NULL	
-		[2] [Perfil_id] varchar(16,0) FOREIGN_KEY_OF Perfil(id) NOT NULL	
+		[1] [email] varchar(64,0) FOREIGN_KEY_OF Usuario(email) NOT NULL	
+		[2] [Perfil_id] varchar(32,0) FOREIGN_KEY_OF Perfil(id) NOT NULL	
 		,Indexes {
 		}
 	}
@@ -53,12 +53,11 @@
 	}
 
 	Usuario {
-		[1] [id] varchar(16,0) NOT NULL	
+		[1] [email] varchar(64,0) NOT NULL	
 		[2] habilitado integer(1,0) NOT NULL	
 		[3] nombre_completo varchar(128,0) NOT NULL	
 		[4] password varchar(64,0) NOT NULL	
-		[5] email varchar(64,0)	
-		[6] Sucursal_id integer(10,0) FOREIGN_KEY_OF Sucursal(id)	
+		[5] Sucursal_id integer(10,0) FOREIGN_KEY_OF Sucursal(id)	
 		,Indexes {
 		}
 	}
@@ -66,7 +65,7 @@
 	CFD_Venta {
 		[1] ++[id] integer(10,0) NOT NULL	
 		[2] ultima_actualizacion timestamp(0,0) NOT NULL	
-		[3] contenido_original_xml varchar(102400,0)	
+		[3] contenido_original_xml blob(0,0)	
 		[4] calling_error_result varchar(1024,0)	
 		,Indexes {
 		}
@@ -82,7 +81,7 @@
 	Movimiento_operativo_almacen {
 		[1] ++[id] integer(10,0) NOT NULL	
 		[2] motivo varchar(255,0) NOT NULL	
-		[3] Usuario_id varchar(16,0) FOREIGN_KEY_OF Usuario(id) NOT NULL	
+		[3] Usuario_email varchar(64,0) FOREIGN_KEY_OF Usuario(email) NOT NULL	
 		[4] fecha_inicio timestamp(0,0) NOT NULL	
 		[5] Almacen_origen integer(10,0) FOREIGN_KEY_OF Almacen(id) NOT NULL	
 		[6] Almacen_destino integer(10,0) FOREIGN_KEY_OF Almacen(id) NOT NULL	
@@ -108,7 +107,7 @@
 		[6] cantidad integer(10,0) NOT NULL	
 		[7] costo double(19,0)	
 		[8] precio double(19,0)	
-		[9] Usuario_id varchar(16,0) FOREIGN_KEY_OF Usuario(id) NOT NULL	
+		[9] Usuario_email varchar(64,0) FOREIGN_KEY_OF Usuario(email) NOT NULL	
 		,Indexes {
 		}
 	}
@@ -126,7 +125,7 @@
 	Entrada_almacen {
 		[1] [id] integer(10,0) NOT NULL	
 		[2] Almacen_id integer(10,0) FOREIGN_KEY_OF Almacen(id) NOT NULL	
-		[3] Usuario_id varchar(16,0) FOREIGN_KEY_OF Usuario(id) NOT NULL	
+		[3] Usuario_email varchar(64,0) FOREIGN_KEY_OF Usuario(email) NOT NULL	
 		[4] fecha timestamp(0,0) NOT NULL	
 		[5] comentarios varchar(255,0)	
 		[6] descuento_aplicado double(19,0)	
@@ -174,8 +173,8 @@
 	}
 
 	Perfil {
-		[1] [id] varchar(16,0) NOT NULL	
-		[2] descripcion varchar(255,0) NOT NULL	
+		[1] [id] varchar(32,0) NOT NULL	
+		[2] descripcion varchar(32,0) NOT NULL	
 		,Indexes {
 		}
 	}
@@ -235,7 +234,7 @@
 		[1] ++[id] integer(10,0) NOT NULL	
 		[2] estado integer(10,0) NOT NULL	
 		[3] fecha_actualizacion timestamp(0,0) NOT NULL	
-		[4] Usuario_id varchar(16,0) FOREIGN_KEY_OF Usuario(id) NOT NULL	
+		[4] Usuario_email varchar(64,0) FOREIGN_KEY_OF Usuario(email) NOT NULL	
 		[5] Cliente_id integer(10,0) FOREIGN_KEY_OF Cliente(id)	
 		[6] Forma_De_Pago_id integer(10,0) FOREIGN_KEY_OF Forma_De_Pago(id)	
 		[7] Metodo_De_Pago_id integer(10,0) FOREIGN_KEY_OF Metodo_De_Pago(id)	

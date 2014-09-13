@@ -1,7 +1,6 @@
 <%@ page language="java" import="com.pmarlen.web.common	.view.messages.Messages" %>
 <%@ page language="java" import="java.util.Locale" %>
 <%@ page pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <jsp:useBean id="versionInfo" class="com.pmarlen.web.common.view.messages.VersionInfo"  scope="session"/>

@@ -36,11 +36,11 @@ import javax.persistence.TemporalType;
  * 
  * @author Tracktopell::jpa-builder @see  https://github.com/tracktopell/UtilProjects/tree/master/jpa-builder
  * @version 0.8.5
- * @date 2014/08/27 07:01
+ * @date 2014/09/11 12:55
  */
 
 public class EntradaAlmacen implements java.io.Serializable {
-    private static final long serialVersionUID = 1590125579;
+    private static final long serialVersionUID = 894522849;
     
     /**
     * id
@@ -53,9 +53,9 @@ public class EntradaAlmacen implements java.io.Serializable {
     private Integer almacenId;
     
     /**
-    * usuario id
+    * usuario email
     */
-    private String usuarioId;
+    private String usuarioEmail;
     
     /**
     * fecha
@@ -82,12 +82,16 @@ public class EntradaAlmacen implements java.io.Serializable {
      * JPA Entity Constructor
      */
     public EntradaAlmacen(com.pmarlen.model.beans.EntradaAlmacen jpaEntity) {
-        this.id = jpaEntity.getId();
-        this.almacenId = jpaEntity.getAlmacen().getId(); // normalized 
-        this.usuarioId = jpaEntity.getUsuario().getId(); // normalized 
-        this.fecha = jpaEntity.getFecha();
-        this.comentarios = jpaEntity.getComentarios();
-        this.descuentoAplicado = jpaEntity.getDescuentoAplicado();
+        // this.id = jpaEntity.getId()!=null?jpaEntity.getId():null; // bug ?
+        this.id = jpaEntity.getId(); // fixed
+        this.almacenId = jpaEntity.getAlmacen()!=null?jpaEntity.getAlmacen().getId():null; // normalized 
+        this.usuarioEmail = jpaEntity.getUsuario()!=null?jpaEntity.getUsuario().getEmail():null; // normalized 
+        // this.fecha = jpaEntity.getFecha()!=null?jpaEntity.getFecha():null; // bug ?
+        this.fecha = jpaEntity.getFecha(); // fixed
+        // this.comentarios = jpaEntity.getComentarios()!=null?jpaEntity.getComentarios():null; // bug ?
+        this.comentarios = jpaEntity.getComentarios(); // fixed
+        // this.descuentoAplicado = jpaEntity.getDescuentoAplicado()!=null?jpaEntity.getDescuentoAplicado():null; // bug ?
+        this.descuentoAplicado = jpaEntity.getDescuentoAplicado(); // fixed
     }
 	
     /** 
@@ -117,12 +121,12 @@ public class EntradaAlmacen implements java.io.Serializable {
         this.almacenId = id;
     }
 
-    public String  getUsuarioId() {
-        return this.usuarioId;
+    public String  getUsuarioEmail() {
+        return this.usuarioEmail;
     }
 
-    public void setUsuarioId(String id) {
-        this.usuarioId = id;
+    public void setUsuarioEmail(String id) {
+        this.usuarioEmail = id;
     }
 
     public java.util.Date getFecha() {
@@ -154,8 +158,8 @@ public class EntradaAlmacen implements java.io.Serializable {
         com.pmarlen.model.beans.EntradaAlmacen jpaEntity = new com.pmarlen.model.beans.EntradaAlmacen();
 
         jpaEntity.setId( this.getId());
-        jpaEntity.setAlmacen( new com.pmarlen.model.beans.Almacen(this.getAlmacenId())); // normalized
-        jpaEntity.setUsuario( new com.pmarlen.model.beans.Usuario(this.getUsuarioId())); // normalized
+        jpaEntity.setAlmacen( this.getAlmacenId()!=null? new com.pmarlen.model.beans.Almacen(this.getAlmacenId()):null); // normalized
+        jpaEntity.setUsuario( this.getUsuarioEmail()!=null? new com.pmarlen.model.beans.Usuario(this.getUsuarioEmail()):null); // normalized
         jpaEntity.setFecha( this.getFecha());
         jpaEntity.setComentarios( this.getComentarios());
         jpaEntity.setDescuentoAplicado( this.getDescuentoAplicado());

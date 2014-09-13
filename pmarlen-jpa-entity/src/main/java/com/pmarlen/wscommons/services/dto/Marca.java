@@ -36,11 +36,11 @@ import javax.persistence.TemporalType;
  * 
  * @author Tracktopell::jpa-builder @see  https://github.com/tracktopell/UtilProjects/tree/master/jpa-builder
  * @version 0.8.5
- * @date 2014/08/27 07:01
+ * @date 2014/09/11 12:55
  */
 
 public class Marca implements java.io.Serializable {
-    private static final long serialVersionUID = 968211817;
+    private static final long serialVersionUID = 1137015402;
     
     /**
     * id
@@ -72,10 +72,12 @@ public class Marca implements java.io.Serializable {
      * JPA Entity Constructor
      */
     public Marca(com.pmarlen.model.beans.Marca jpaEntity) {
-        this.id = jpaEntity.getId();
-        this.industriaId = jpaEntity.getIndustria().getId(); // normalized 
-        this.lineaId = jpaEntity.getLinea().getId(); // normalized 
-        this.nombre = jpaEntity.getNombre();
+        // this.id = jpaEntity.getId()!=null?jpaEntity.getId():null; // bug ?
+        this.id = jpaEntity.getId(); // fixed
+        this.industriaId = jpaEntity.getIndustria()!=null?jpaEntity.getIndustria().getId():null; // normalized 
+        this.lineaId = jpaEntity.getLinea()!=null?jpaEntity.getLinea().getId():null; // normalized 
+        // this.nombre = jpaEntity.getNombre()!=null?jpaEntity.getNombre():null; // bug ?
+        this.nombre = jpaEntity.getNombre(); // fixed
     }
 	
     /** 
@@ -126,8 +128,8 @@ public class Marca implements java.io.Serializable {
         com.pmarlen.model.beans.Marca jpaEntity = new com.pmarlen.model.beans.Marca();
 
         jpaEntity.setId( this.getId());
-        jpaEntity.setIndustria( new com.pmarlen.model.beans.Industria(this.getIndustriaId())); // normalized
-        jpaEntity.setLinea( new com.pmarlen.model.beans.Linea(this.getLineaId())); // normalized
+        jpaEntity.setIndustria( this.getIndustriaId()!=null? new com.pmarlen.model.beans.Industria(this.getIndustriaId()):null); // normalized
+        jpaEntity.setLinea( this.getLineaId()!=null? new com.pmarlen.model.beans.Linea(this.getLineaId()):null); // normalized
         jpaEntity.setNombre( this.getNombre());
 
         return jpaEntity;

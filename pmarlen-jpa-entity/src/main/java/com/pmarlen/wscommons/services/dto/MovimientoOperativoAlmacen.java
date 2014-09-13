@@ -36,11 +36,11 @@ import javax.persistence.TemporalType;
  * 
  * @author Tracktopell::jpa-builder @see  https://github.com/tracktopell/UtilProjects/tree/master/jpa-builder
  * @version 0.8.5
- * @date 2014/08/27 07:01
+ * @date 2014/09/11 12:55
  */
 
 public class MovimientoOperativoAlmacen implements java.io.Serializable {
-    private static final long serialVersionUID = 1501141604;
+    private static final long serialVersionUID = 1879240281;
     
     /**
     * id
@@ -53,9 +53,9 @@ public class MovimientoOperativoAlmacen implements java.io.Serializable {
     private String motivo;
     
     /**
-    * usuario id
+    * usuario email
     */
-    private String usuarioId;
+    private String usuarioEmail;
     
     /**
     * fecha inicio
@@ -92,14 +92,19 @@ public class MovimientoOperativoAlmacen implements java.io.Serializable {
      * JPA Entity Constructor
      */
     public MovimientoOperativoAlmacen(com.pmarlen.model.beans.MovimientoOperativoAlmacen jpaEntity) {
-        this.id = jpaEntity.getId();
-        this.motivo = jpaEntity.getMotivo();
-        this.usuarioId = jpaEntity.getUsuario().getId(); // normalized 
-        this.fechaInicio = jpaEntity.getFechaInicio();
-        this.almacenOrigen = jpaEntity.getAlmacenOrigen().getId(); // custom
-        this.almacenDestino = jpaEntity.getAlmacenDestino().getId(); // custom
-        this.tipoMovimientoId = jpaEntity.getTipoMovimientoId();
-        this.fechaConfirmacion = jpaEntity.getFechaConfirmacion();
+        // this.id = jpaEntity.getId()!=null?jpaEntity.getId():null; // bug ?
+        this.id = jpaEntity.getId(); // fixed
+        // this.motivo = jpaEntity.getMotivo()!=null?jpaEntity.getMotivo():null; // bug ?
+        this.motivo = jpaEntity.getMotivo(); // fixed
+        this.usuarioEmail = jpaEntity.getUsuario()!=null?jpaEntity.getUsuario().getEmail():null; // normalized 
+        // this.fechaInicio = jpaEntity.getFechaInicio()!=null?jpaEntity.getFechaInicio():null; // bug ?
+        this.fechaInicio = jpaEntity.getFechaInicio(); // fixed
+        this.almacenOrigen = jpaEntity.getAlmacenOrigen()!=null?jpaEntity.getAlmacenOrigen().getId():null; // custom
+        this.almacenDestino = jpaEntity.getAlmacenDestino()!=null?jpaEntity.getAlmacenDestino().getId():null; // custom
+        // this.tipoMovimientoId = jpaEntity.getTipoMovimientoId()!=null?jpaEntity.getTipoMovimientoId():null; // bug ?
+        this.tipoMovimientoId = jpaEntity.getTipoMovimientoId(); // fixed
+        // this.fechaConfirmacion = jpaEntity.getFechaConfirmacion()!=null?jpaEntity.getFechaConfirmacion():null; // bug ?
+        this.fechaConfirmacion = jpaEntity.getFechaConfirmacion(); // fixed
     }
 	
     /** 
@@ -129,12 +134,12 @@ public class MovimientoOperativoAlmacen implements java.io.Serializable {
         this.motivo = v;
     }
 
-    public String  getUsuarioId() {
-        return this.usuarioId;
+    public String  getUsuarioEmail() {
+        return this.usuarioEmail;
     }
 
-    public void setUsuarioId(String id) {
-        this.usuarioId = id;
+    public void setUsuarioEmail(String id) {
+        this.usuarioEmail = id;
     }
 
     public java.util.Date getFechaInicio() {
@@ -183,7 +188,7 @@ public class MovimientoOperativoAlmacen implements java.io.Serializable {
 
         jpaEntity.setId( this.getId());
         jpaEntity.setMotivo( this.getMotivo());
-        jpaEntity.setUsuario( new com.pmarlen.model.beans.Usuario(this.getUsuarioId())); // normalized
+        jpaEntity.setUsuario( this.getUsuarioEmail()!=null? new com.pmarlen.model.beans.Usuario(this.getUsuarioEmail()):null); // normalized
         jpaEntity.setFechaInicio( this.getFechaInicio());
         jpaEntity.setAlmacenOrigen( new com.pmarlen.model.beans.Almacen(this.getAlmacenOrigen())); // custom
         jpaEntity.setAlmacenDestino( new com.pmarlen.model.beans.Almacen(this.getAlmacenDestino())); // custom

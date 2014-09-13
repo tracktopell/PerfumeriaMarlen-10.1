@@ -36,11 +36,11 @@ import javax.persistence.TemporalType;
  * 
  * @author Tracktopell::jpa-builder @see  https://github.com/tracktopell/UtilProjects/tree/master/jpa-builder
  * @version 0.8.5
- * @date 2014/08/27 07:01
+ * @date 2014/09/11 12:55
  */
 
 public class Industria implements java.io.Serializable {
-    private static final long serialVersionUID = 437277711;
+    private static final long serialVersionUID = 1762204735;
     
     /**
     * id
@@ -62,8 +62,10 @@ public class Industria implements java.io.Serializable {
      * JPA Entity Constructor
      */
     public Industria(com.pmarlen.model.beans.Industria jpaEntity) {
-        this.id = jpaEntity.getId();
-        this.nombre = jpaEntity.getNombre();
+        // this.id = jpaEntity.getId()!=null?jpaEntity.getId():null; // bug ?
+        this.id = jpaEntity.getId(); // fixed
+        // this.nombre = jpaEntity.getNombre()!=null?jpaEntity.getNombre():null; // bug ?
+        this.nombre = jpaEntity.getNombre(); // fixed
     }
 	
     /** 

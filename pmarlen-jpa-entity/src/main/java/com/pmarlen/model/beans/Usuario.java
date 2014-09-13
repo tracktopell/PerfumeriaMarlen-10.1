@@ -35,7 +35,7 @@ import javax.persistence.TemporalType;
  * m2m
  * @author Tracktopell::jpa-builder @see  https://github.com/tracktopell/UtilProjects/tree/master/jpa-builder
  * @version 0.8.5
- * @date 2014/08/27 07:01
+ * @date 2014/09/11 12:55
  */
 
 
@@ -43,15 +43,15 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "USUARIO")
 public class Usuario implements java.io.Serializable {
-    private static final long serialVersionUID = 1410508107;
+    private static final long serialVersionUID = 1366415098;
     
     /**
-    * id
+    * email
     */
     @Id
     @Basic(optional = false)
-    @Column(name = "ID" , length=16  )
-    private String id;
+    @Column(name = "EMAIL" , length=64  )
+    private String email;
     
     /**
     * habilitado
@@ -75,37 +75,30 @@ public class Usuario implements java.io.Serializable {
     private String password;
     
     /**
-    * email
-    */
-    @Basic(optional = true)
-    @Column(name = "EMAIL" , length=64  )
-    private String email;
-    
-    /**
     * sucursal id
     */
     @JoinColumn(name = "SUCURSAL_ID" , referencedColumnName = "ID")
     @ManyToOne(optional = true)
     private Sucursal sucursal;
-    // bug , must refering Movimiento_operativo_almacen.Usuario_id => usuarioId, normalized ? true
+    // bug , must refering Movimiento_operativo_almacen.Usuario_email => usuarioEmail, normalized ? true
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
     private Collection<MovimientoOperativoAlmacen> movimientoOperativoAlmacenCollection;
     
-    // bug , must refering Movimiento_Historico_Producto.Usuario_id => usuarioId, normalized ? true
+    // bug , must refering Movimiento_Historico_Producto.Usuario_email => usuarioEmail, normalized ? true
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
     private Collection<MovimientoHistoricoProducto> movimientoHistoricoProductoCollection;
     
-    // bug , must refering Entrada_almacen.Usuario_id => usuarioId, normalized ? true
+    // bug , must refering Entrada_almacen.Usuario_email => usuarioEmail, normalized ? true
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
     private Collection<EntradaAlmacen> entradaAlmacenCollection;
     
-    // bug , must refering Pedido_Venta.Usuario_id => usuarioId, normalized ? true
+    // bug , must refering Pedido_Venta.Usuario_email => usuarioEmail, normalized ? true
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
     private Collection<PedidoVenta> pedidoVentaCollection;
     
     
     @JoinTable(name               = "USUARIO_PERFIL",
-               joinColumns        = {@JoinColumn(name = "USUARIO_ID", referencedColumnName ="ID")},
+               joinColumns        = {@JoinColumn(name = "EMAIL", referencedColumnName ="EMAIL")},
                inverseJoinColumns = {@JoinColumn(name = "PERFIL_ID", referencedColumnName ="ID")}
                )
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -121,20 +114,20 @@ public class Usuario implements java.io.Serializable {
     /** 
      * lazy Constructor just with IDs
      */
-    public Usuario( String id ) {
-        this.id 	= 	id;
+    public Usuario( String email ) {
+        this.email 	= 	email;
 
     }
     
     /**
      * Getters and Setters
      */
-    public String getId() {
-        return this.id;
+    public String getEmail() {
+        return this.email;
     }
 
-    public void setId(String v) {
-        this.id = v;
+    public void setEmail(String v) {
+        this.email = v;
     }
 
     public int getHabilitado() {
@@ -159,14 +152,6 @@ public class Usuario implements java.io.Serializable {
 
     public void setPassword(String v) {
         this.password = v;
-    }
-
-    public String getEmail() {
-        return this.email;
-    }
-
-    public void setEmail(String v) {
-        this.email = v;
     }
 
     public Sucursal getSucursal () {
@@ -227,7 +212,7 @@ public class Usuario implements java.io.Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash = (id != null ? id.hashCode() : 0 );
+        hash = (email != null ? email.hashCode() : 0 );
         return hash;
     }
 
@@ -239,7 +224,7 @@ public class Usuario implements java.io.Serializable {
         }
 
     	Usuario other = (Usuario ) o;
-        if ( (this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ( (this.email == null && other.email != null) || (this.email != null && !this.email.equals(other.email))) {
             return false;
         }
 

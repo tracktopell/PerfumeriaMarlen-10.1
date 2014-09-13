@@ -36,11 +36,11 @@ import javax.persistence.TemporalType;
  * 
  * @author Tracktopell::jpa-builder @see  https://github.com/tracktopell/UtilProjects/tree/master/jpa-builder
  * @version 0.8.5
- * @date 2014/08/27 07:01
+ * @date 2014/09/11 12:55
  */
 
 public class Producto implements java.io.Serializable {
-    private static final long serialVersionUID = 1688073955;
+    private static final long serialVersionUID = 83389031;
     
     /**
     * id
@@ -117,19 +117,31 @@ public class Producto implements java.io.Serializable {
      * JPA Entity Constructor
      */
     public Producto(com.pmarlen.model.beans.Producto jpaEntity) {
-        this.id = jpaEntity.getId();
-        this.codigoBarras = jpaEntity.getCodigoBarras();
-        this.marcaId = jpaEntity.getMarca().getId(); // normalized 
-        this.nombre = jpaEntity.getNombre();
-        this.presentacion = jpaEntity.getPresentacion();
-        this.unidadesPorCaja = jpaEntity.getUnidadesPorCaja();
-        this.unidadMedida = jpaEntity.getUnidadMedida();
-        this.costo = jpaEntity.getCosto();
-        this.costoVenta = jpaEntity.getCostoVenta();
-        this.contenido = jpaEntity.getContenido();
-        this.abrebiatura = jpaEntity.getAbrebiatura();
-        this.precioVentaTmp = jpaEntity.getPrecioVentaTmp();
-        this.cantidadActualTmp = jpaEntity.getCantidadActualTmp();
+        // this.id = jpaEntity.getId()!=null?jpaEntity.getId():null; // bug ?
+        this.id = jpaEntity.getId(); // fixed
+        // this.codigoBarras = jpaEntity.getCodigoBarras()!=null?jpaEntity.getCodigoBarras():null; // bug ?
+        this.codigoBarras = jpaEntity.getCodigoBarras(); // fixed
+        this.marcaId = jpaEntity.getMarca()!=null?jpaEntity.getMarca().getId():null; // normalized 
+        // this.nombre = jpaEntity.getNombre()!=null?jpaEntity.getNombre():null; // bug ?
+        this.nombre = jpaEntity.getNombre(); // fixed
+        // this.presentacion = jpaEntity.getPresentacion()!=null?jpaEntity.getPresentacion():null; // bug ?
+        this.presentacion = jpaEntity.getPresentacion(); // fixed
+        // this.unidadesPorCaja = jpaEntity.getUnidadesPorCaja()!=null?jpaEntity.getUnidadesPorCaja():null; // bug ?
+        this.unidadesPorCaja = jpaEntity.getUnidadesPorCaja(); // fixed
+        // this.unidadMedida = jpaEntity.getUnidadMedida()!=null?jpaEntity.getUnidadMedida():null; // bug ?
+        this.unidadMedida = jpaEntity.getUnidadMedida(); // fixed
+        // this.costo = jpaEntity.getCosto()!=null?jpaEntity.getCosto():null; // bug ?
+        this.costo = jpaEntity.getCosto(); // fixed
+        // this.costoVenta = jpaEntity.getCostoVenta()!=null?jpaEntity.getCostoVenta():null; // bug ?
+        this.costoVenta = jpaEntity.getCostoVenta(); // fixed
+        // this.contenido = jpaEntity.getContenido()!=null?jpaEntity.getContenido():null; // bug ?
+        this.contenido = jpaEntity.getContenido(); // fixed
+        // this.abrebiatura = jpaEntity.getAbrebiatura()!=null?jpaEntity.getAbrebiatura():null; // bug ?
+        this.abrebiatura = jpaEntity.getAbrebiatura(); // fixed
+        // this.precioVentaTmp = jpaEntity.getPrecioVentaTmp()!=null?jpaEntity.getPrecioVentaTmp():null; // bug ?
+        this.precioVentaTmp = jpaEntity.getPrecioVentaTmp(); // fixed
+        // this.cantidadActualTmp = jpaEntity.getCantidadActualTmp()!=null?jpaEntity.getCantidadActualTmp():null; // bug ?
+        this.cantidadActualTmp = jpaEntity.getCantidadActualTmp(); // fixed
     }
 	
     /** 
@@ -253,7 +265,7 @@ public class Producto implements java.io.Serializable {
 
         jpaEntity.setId( this.getId());
         jpaEntity.setCodigoBarras( this.getCodigoBarras());
-        jpaEntity.setMarca( new com.pmarlen.model.beans.Marca(this.getMarcaId())); // normalized
+        jpaEntity.setMarca( this.getMarcaId()!=null? new com.pmarlen.model.beans.Marca(this.getMarcaId()):null); // normalized
         jpaEntity.setNombre( this.getNombre());
         jpaEntity.setPresentacion( this.getPresentacion());
         jpaEntity.setUnidadesPorCaja( this.getUnidadesPorCaja());

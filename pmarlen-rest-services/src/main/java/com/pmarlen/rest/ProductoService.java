@@ -40,7 +40,7 @@ public class ProductoService {
 		List<com.pmarlen.wscommons.services.dto.Producto> result=new ArrayList<com.pmarlen.wscommons.services.dto.Producto>();		
 
 		final List<Producto> jpaList = productoJPAController.findAllEntities();
-		logger.debug("->getAll jpaList="+jpaList);
+		logger.debug("->getAll jpaList is null ?"+(jpaList==null));
 
 		com.pmarlen.wscommons.services.dto.Producto dto = null;
 		for(Producto l: jpaList){

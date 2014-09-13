@@ -36,11 +36,11 @@ import javax.persistence.TemporalType;
  * 
  * @author Tracktopell::jpa-builder @see  https://github.com/tracktopell/UtilProjects/tree/master/jpa-builder
  * @version 0.8.5
- * @date 2014/08/27 07:01
+ * @date 2014/09/11 12:55
  */
 
 public class PedidoVenta implements java.io.Serializable {
-    private static final long serialVersionUID = 2008272604;
+    private static final long serialVersionUID = 1634386214;
     
     /**
     * id
@@ -58,9 +58,9 @@ public class PedidoVenta implements java.io.Serializable {
     private java.util.Date fechaActualizacion;
     
     /**
-    * usuario id
+    * usuario email
     */
-    private String usuarioId;
+    private String usuarioEmail;
     
     /**
     * cliente id
@@ -162,28 +162,45 @@ public class PedidoVenta implements java.io.Serializable {
      * JPA Entity Constructor
      */
     public PedidoVenta(com.pmarlen.model.beans.PedidoVenta jpaEntity) {
-        this.id = jpaEntity.getId();
-        this.estado = jpaEntity.getEstado();
-        this.fechaActualizacion = jpaEntity.getFechaActualizacion();
-        this.usuarioId = jpaEntity.getUsuario().getId(); // normalized 
-        this.clienteId = jpaEntity.getCliente().getId(); // normalized 
-        this.formaDePagoId = jpaEntity.getFormaDePago().getId(); // normalized 
-        this.metodoDePagoId = jpaEntity.getMetodoDePago().getId(); // normalized 
-        this.factoriva = jpaEntity.getFactoriva();
-        this.comentarios = jpaEntity.getComentarios();
-        this.descuentoAplicado = jpaEntity.getDescuentoAplicado();
-        this.facturable = jpaEntity.getFacturable();
-        this.cfdVentaId = jpaEntity.getCfdVenta().getId(); // normalized 
-        this.numeroTicket = jpaEntity.getNumeroTicket();
-        this.caja = jpaEntity.getCaja();
-        this.importeRecibido = jpaEntity.getImporteRecibido();
-        this.aprobacionVisaMastercard = jpaEntity.getAprobacionVisaMastercard();
-        this.mayoreo = jpaEntity.getMayoreo();
-        this.porcentajeDescuentoCalculado = jpaEntity.getPorcentajeDescuentoCalculado();
-        this.porcentajeDescuentoExtra = jpaEntity.getPorcentajeDescuentoExtra();
-        this.condicionesDePago = jpaEntity.getCondicionesDePago();
-        this.numDeCuenta = jpaEntity.getNumDeCuenta();
-        this.motivoDescuento = jpaEntity.getMotivoDescuento();
+        // this.id = jpaEntity.getId()!=null?jpaEntity.getId():null; // bug ?
+        this.id = jpaEntity.getId(); // fixed
+        // this.estado = jpaEntity.getEstado()!=null?jpaEntity.getEstado():null; // bug ?
+        this.estado = jpaEntity.getEstado(); // fixed
+        // this.fechaActualizacion = jpaEntity.getFechaActualizacion()!=null?jpaEntity.getFechaActualizacion():null; // bug ?
+        this.fechaActualizacion = jpaEntity.getFechaActualizacion(); // fixed
+        this.usuarioEmail = jpaEntity.getUsuario()!=null?jpaEntity.getUsuario().getEmail():null; // normalized 
+        this.clienteId = jpaEntity.getCliente()!=null?jpaEntity.getCliente().getId():null; // normalized 
+        this.formaDePagoId = jpaEntity.getFormaDePago()!=null?jpaEntity.getFormaDePago().getId():null; // normalized 
+        this.metodoDePagoId = jpaEntity.getMetodoDePago()!=null?jpaEntity.getMetodoDePago().getId():null; // normalized 
+        // this.factoriva = jpaEntity.getFactoriva()!=null?jpaEntity.getFactoriva():null; // bug ?
+        this.factoriva = jpaEntity.getFactoriva(); // fixed
+        // this.comentarios = jpaEntity.getComentarios()!=null?jpaEntity.getComentarios():null; // bug ?
+        this.comentarios = jpaEntity.getComentarios(); // fixed
+        // this.descuentoAplicado = jpaEntity.getDescuentoAplicado()!=null?jpaEntity.getDescuentoAplicado():null; // bug ?
+        this.descuentoAplicado = jpaEntity.getDescuentoAplicado(); // fixed
+        // this.facturable = jpaEntity.getFacturable()!=null?jpaEntity.getFacturable():null; // bug ?
+        this.facturable = jpaEntity.getFacturable(); // fixed
+        this.cfdVentaId = jpaEntity.getCfdVenta()!=null?jpaEntity.getCfdVenta().getId():null; // normalized 
+        // this.numeroTicket = jpaEntity.getNumeroTicket()!=null?jpaEntity.getNumeroTicket():null; // bug ?
+        this.numeroTicket = jpaEntity.getNumeroTicket(); // fixed
+        // this.caja = jpaEntity.getCaja()!=null?jpaEntity.getCaja():null; // bug ?
+        this.caja = jpaEntity.getCaja(); // fixed
+        // this.importeRecibido = jpaEntity.getImporteRecibido()!=null?jpaEntity.getImporteRecibido():null; // bug ?
+        this.importeRecibido = jpaEntity.getImporteRecibido(); // fixed
+        // this.aprobacionVisaMastercard = jpaEntity.getAprobacionVisaMastercard()!=null?jpaEntity.getAprobacionVisaMastercard():null; // bug ?
+        this.aprobacionVisaMastercard = jpaEntity.getAprobacionVisaMastercard(); // fixed
+        // this.mayoreo = jpaEntity.getMayoreo()!=null?jpaEntity.getMayoreo():null; // bug ?
+        this.mayoreo = jpaEntity.getMayoreo(); // fixed
+        // this.porcentajeDescuentoCalculado = jpaEntity.getPorcentajeDescuentoCalculado()!=null?jpaEntity.getPorcentajeDescuentoCalculado():null; // bug ?
+        this.porcentajeDescuentoCalculado = jpaEntity.getPorcentajeDescuentoCalculado(); // fixed
+        // this.porcentajeDescuentoExtra = jpaEntity.getPorcentajeDescuentoExtra()!=null?jpaEntity.getPorcentajeDescuentoExtra():null; // bug ?
+        this.porcentajeDescuentoExtra = jpaEntity.getPorcentajeDescuentoExtra(); // fixed
+        // this.condicionesDePago = jpaEntity.getCondicionesDePago()!=null?jpaEntity.getCondicionesDePago():null; // bug ?
+        this.condicionesDePago = jpaEntity.getCondicionesDePago(); // fixed
+        // this.numDeCuenta = jpaEntity.getNumDeCuenta()!=null?jpaEntity.getNumDeCuenta():null; // bug ?
+        this.numDeCuenta = jpaEntity.getNumDeCuenta(); // fixed
+        // this.motivoDescuento = jpaEntity.getMotivoDescuento()!=null?jpaEntity.getMotivoDescuento():null; // bug ?
+        this.motivoDescuento = jpaEntity.getMotivoDescuento(); // fixed
     }
 	
     /** 
@@ -221,12 +238,12 @@ public class PedidoVenta implements java.io.Serializable {
         this.fechaActualizacion = v;
     }
 
-    public String  getUsuarioId() {
-        return this.usuarioId;
+    public String  getUsuarioEmail() {
+        return this.usuarioEmail;
     }
 
-    public void setUsuarioId(String id) {
-        this.usuarioId = id;
+    public void setUsuarioEmail(String id) {
+        this.usuarioEmail = id;
     }
 
     public Integer  getClienteId() {
@@ -380,15 +397,15 @@ public class PedidoVenta implements java.io.Serializable {
         jpaEntity.setId( this.getId());
         jpaEntity.setEstado( this.getEstado());
         jpaEntity.setFechaActualizacion( this.getFechaActualizacion());
-        jpaEntity.setUsuario( new com.pmarlen.model.beans.Usuario(this.getUsuarioId())); // normalized
-        jpaEntity.setCliente( new com.pmarlen.model.beans.Cliente(this.getClienteId())); // normalized
-        jpaEntity.setFormaDePago( new com.pmarlen.model.beans.FormaDePago(this.getFormaDePagoId())); // normalized
-        jpaEntity.setMetodoDePago( new com.pmarlen.model.beans.MetodoDePago(this.getMetodoDePagoId())); // normalized
+        jpaEntity.setUsuario( this.getUsuarioEmail()!=null? new com.pmarlen.model.beans.Usuario(this.getUsuarioEmail()):null); // normalized
+        jpaEntity.setCliente( this.getClienteId()!=null? new com.pmarlen.model.beans.Cliente(this.getClienteId()):null); // normalized
+        jpaEntity.setFormaDePago( this.getFormaDePagoId()!=null? new com.pmarlen.model.beans.FormaDePago(this.getFormaDePagoId()):null); // normalized
+        jpaEntity.setMetodoDePago( this.getMetodoDePagoId()!=null? new com.pmarlen.model.beans.MetodoDePago(this.getMetodoDePagoId()):null); // normalized
         jpaEntity.setFactoriva( this.getFactoriva());
         jpaEntity.setComentarios( this.getComentarios());
         jpaEntity.setDescuentoAplicado( this.getDescuentoAplicado());
         jpaEntity.setFacturable( this.getFacturable());
-        jpaEntity.setCfdVenta( new com.pmarlen.model.beans.CfdVenta(this.getCfdVentaId())); // normalized
+        jpaEntity.setCfdVenta( this.getCfdVentaId()!=null? new com.pmarlen.model.beans.CfdVenta(this.getCfdVentaId()):null); // normalized
         jpaEntity.setNumeroTicket( this.getNumeroTicket());
         jpaEntity.setCaja( this.getCaja());
         jpaEntity.setImporteRecibido( this.getImporteRecibido());

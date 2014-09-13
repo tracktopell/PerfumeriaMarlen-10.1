@@ -39,7 +39,7 @@ public class ClienteService {
 		List<com.pmarlen.wscommons.services.dto.Cliente> result=new ArrayList<com.pmarlen.wscommons.services.dto.Cliente>();		
 
 		final List<Cliente> jpaList = clienteJPAController.findAllEntities();
-		logger.debug("->getAll jpaList="+jpaList);
+		logger.debug("->getAll jpaList is null ?"+(jpaList==null));
 
 		com.pmarlen.wscommons.services.dto.Cliente dto = null;
 		for(Cliente l: jpaList){

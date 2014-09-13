@@ -36,11 +36,11 @@ import javax.persistence.TemporalType;
  * 
  * @author Tracktopell::jpa-builder @see  https://github.com/tracktopell/UtilProjects/tree/master/jpa-builder
  * @version 0.8.5
- * @date 2014/08/27 07:01
+ * @date 2014/09/11 12:55
  */
 
 public class Multimedio implements java.io.Serializable {
-    private static final long serialVersionUID = 2101772669;
+    private static final long serialVersionUID = 1809752898;
     
     /**
     * id
@@ -77,11 +77,16 @@ public class Multimedio implements java.io.Serializable {
      * JPA Entity Constructor
      */
     public Multimedio(com.pmarlen.model.beans.Multimedio jpaEntity) {
-        this.id = jpaEntity.getId();
-        this.mimeType = jpaEntity.getMimeType();
-        this.rutaContenido = jpaEntity.getRutaContenido();
-        this.sizeBytes = jpaEntity.getSizeBytes();
-        this.nombreArchivo = jpaEntity.getNombreArchivo();
+        // this.id = jpaEntity.getId()!=null?jpaEntity.getId():null; // bug ?
+        this.id = jpaEntity.getId(); // fixed
+        // this.mimeType = jpaEntity.getMimeType()!=null?jpaEntity.getMimeType():null; // bug ?
+        this.mimeType = jpaEntity.getMimeType(); // fixed
+        // this.rutaContenido = jpaEntity.getRutaContenido()!=null?jpaEntity.getRutaContenido():null; // bug ?
+        this.rutaContenido = jpaEntity.getRutaContenido(); // fixed
+        // this.sizeBytes = jpaEntity.getSizeBytes()!=null?jpaEntity.getSizeBytes():null; // bug ?
+        this.sizeBytes = jpaEntity.getSizeBytes(); // fixed
+        // this.nombreArchivo = jpaEntity.getNombreArchivo()!=null?jpaEntity.getNombreArchivo():null; // bug ?
+        this.nombreArchivo = jpaEntity.getNombreArchivo(); // fixed
     }
 	
     /** 

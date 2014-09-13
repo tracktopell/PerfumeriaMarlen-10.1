@@ -36,11 +36,11 @@ import javax.persistence.TemporalType;
  * 
  * @author Tracktopell::jpa-builder @see  https://github.com/tracktopell/UtilProjects/tree/master/jpa-builder
  * @version 0.8.5
- * @date 2014/08/27 07:01
+ * @date 2014/09/11 12:55
  */
 
 public class FormaDePago implements java.io.Serializable {
-    private static final long serialVersionUID = 378589418;
+    private static final long serialVersionUID = 503783239;
     
     /**
     * id
@@ -62,8 +62,10 @@ public class FormaDePago implements java.io.Serializable {
      * JPA Entity Constructor
      */
     public FormaDePago(com.pmarlen.model.beans.FormaDePago jpaEntity) {
-        this.id = jpaEntity.getId();
-        this.descripcion = jpaEntity.getDescripcion();
+        // this.id = jpaEntity.getId()!=null?jpaEntity.getId():null; // bug ?
+        this.id = jpaEntity.getId(); // fixed
+        // this.descripcion = jpaEntity.getDescripcion()!=null?jpaEntity.getDescripcion():null; // bug ?
+        this.descripcion = jpaEntity.getDescripcion(); // fixed
     }
 	
     /** 

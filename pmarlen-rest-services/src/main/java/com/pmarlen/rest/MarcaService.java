@@ -39,7 +39,7 @@ public class MarcaService {
 		List<com.pmarlen.wscommons.services.dto.Marca> result=new ArrayList<com.pmarlen.wscommons.services.dto.Marca>();		
 
 		final List<Marca> jpaList = marcaJPAController.findAllEntities();
-		logger.debug("->getAll jpaList="+jpaList);
+		logger.debug("->getAll jpaList is null ?"+(jpaList==null));
 
 		com.pmarlen.wscommons.services.dto.Marca dto = null;
 		for(Marca l: jpaList){

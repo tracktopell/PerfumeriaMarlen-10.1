@@ -36,11 +36,11 @@ import javax.persistence.TemporalType;
  * 
  * @author Tracktopell::jpa-builder @see  https://github.com/tracktopell/UtilProjects/tree/master/jpa-builder
  * @version 0.8.5
- * @date 2014/08/27 07:01
+ * @date 2014/09/11 12:55
  */
 
 public class MovimientoHistoricoProducto implements java.io.Serializable {
-    private static final long serialVersionUID = 753313597;
+    private static final long serialVersionUID = 14795687;
     
     /**
     * id
@@ -83,9 +83,9 @@ public class MovimientoHistoricoProducto implements java.io.Serializable {
     private Double precio;
     
     /**
-    * usuario id
+    * usuario email
     */
-    private String usuarioId;
+    private String usuarioEmail;
 
     /** 
      * Default Constructor
@@ -97,15 +97,21 @@ public class MovimientoHistoricoProducto implements java.io.Serializable {
      * JPA Entity Constructor
      */
     public MovimientoHistoricoProducto(com.pmarlen.model.beans.MovimientoHistoricoProducto jpaEntity) {
-        this.id = jpaEntity.getId();
-        this.almacenId = jpaEntity.getAlmacen().getId(); // normalized 
-        this.productoId = jpaEntity.getProducto().getId(); // normalized 
-        this.fecha = jpaEntity.getFecha();
-        this.tipoMovimiento = jpaEntity.getTipoMovimiento();
-        this.cantidad = jpaEntity.getCantidad();
-        this.costo = jpaEntity.getCosto();
-        this.precio = jpaEntity.getPrecio();
-        this.usuarioId = jpaEntity.getUsuario().getId(); // normalized 
+        // this.id = jpaEntity.getId()!=null?jpaEntity.getId():null; // bug ?
+        this.id = jpaEntity.getId(); // fixed
+        this.almacenId = jpaEntity.getAlmacen()!=null?jpaEntity.getAlmacen().getId():null; // normalized 
+        this.productoId = jpaEntity.getProducto()!=null?jpaEntity.getProducto().getId():null; // normalized 
+        // this.fecha = jpaEntity.getFecha()!=null?jpaEntity.getFecha():null; // bug ?
+        this.fecha = jpaEntity.getFecha(); // fixed
+        // this.tipoMovimiento = jpaEntity.getTipoMovimiento()!=null?jpaEntity.getTipoMovimiento():null; // bug ?
+        this.tipoMovimiento = jpaEntity.getTipoMovimiento(); // fixed
+        // this.cantidad = jpaEntity.getCantidad()!=null?jpaEntity.getCantidad():null; // bug ?
+        this.cantidad = jpaEntity.getCantidad(); // fixed
+        // this.costo = jpaEntity.getCosto()!=null?jpaEntity.getCosto():null; // bug ?
+        this.costo = jpaEntity.getCosto(); // fixed
+        // this.precio = jpaEntity.getPrecio()!=null?jpaEntity.getPrecio():null; // bug ?
+        this.precio = jpaEntity.getPrecio(); // fixed
+        this.usuarioEmail = jpaEntity.getUsuario()!=null?jpaEntity.getUsuario().getEmail():null; // normalized 
     }
 	
     /** 
@@ -183,12 +189,12 @@ public class MovimientoHistoricoProducto implements java.io.Serializable {
         this.precio = v;
     }
 
-    public String  getUsuarioId() {
-        return this.usuarioId;
+    public String  getUsuarioEmail() {
+        return this.usuarioEmail;
     }
 
-    public void setUsuarioId(String id) {
-        this.usuarioId = id;
+    public void setUsuarioEmail(String id) {
+        this.usuarioEmail = id;
     }
 
 
@@ -196,14 +202,14 @@ public class MovimientoHistoricoProducto implements java.io.Serializable {
         com.pmarlen.model.beans.MovimientoHistoricoProducto jpaEntity = new com.pmarlen.model.beans.MovimientoHistoricoProducto();
 
         jpaEntity.setId( this.getId());
-        jpaEntity.setAlmacen( new com.pmarlen.model.beans.Almacen(this.getAlmacenId())); // normalized
-        jpaEntity.setProducto( new com.pmarlen.model.beans.Producto(this.getProductoId())); // normalized
+        jpaEntity.setAlmacen( this.getAlmacenId()!=null? new com.pmarlen.model.beans.Almacen(this.getAlmacenId()):null); // normalized
+        jpaEntity.setProducto( this.getProductoId()!=null? new com.pmarlen.model.beans.Producto(this.getProductoId()):null); // normalized
         jpaEntity.setFecha( this.getFecha());
         jpaEntity.setTipoMovimiento( this.getTipoMovimiento());
         jpaEntity.setCantidad( this.getCantidad());
         jpaEntity.setCosto( this.getCosto());
         jpaEntity.setPrecio( this.getPrecio());
-        jpaEntity.setUsuario( new com.pmarlen.model.beans.Usuario(this.getUsuarioId())); // normalized
+        jpaEntity.setUsuario( this.getUsuarioEmail()!=null? new com.pmarlen.model.beans.Usuario(this.getUsuarioEmail()):null); // normalized
 
         return jpaEntity;
     }

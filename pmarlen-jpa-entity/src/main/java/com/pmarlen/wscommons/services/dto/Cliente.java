@@ -36,11 +36,11 @@ import javax.persistence.TemporalType;
  * 
  * @author Tracktopell::jpa-builder @see  https://github.com/tracktopell/UtilProjects/tree/master/jpa-builder
  * @version 0.8.5
- * @date 2014/08/27 07:01
+ * @date 2014/09/11 12:55
  */
 
 public class Cliente implements java.io.Serializable {
-    private static final long serialVersionUID = 359746701;
+    private static final long serialVersionUID = 1066407282;
     
     /**
     * id
@@ -97,15 +97,24 @@ public class Cliente implements java.io.Serializable {
      * JPA Entity Constructor
      */
     public Cliente(com.pmarlen.model.beans.Cliente jpaEntity) {
-        this.id = jpaEntity.getId();
-        this.rfc = jpaEntity.getRfc();
-        this.razonSocial = jpaEntity.getRazonSocial();
-        this.nombreEstablecimiento = jpaEntity.getNombreEstablecimiento();
-        this.contacto = jpaEntity.getContacto();
-        this.telefonos = jpaEntity.getTelefonos();
-        this.email = jpaEntity.getEmail();
-        this.observaciones = jpaEntity.getObservaciones();
-        this.direccion = jpaEntity.getDireccion();
+        // this.id = jpaEntity.getId()!=null?jpaEntity.getId():null; // bug ?
+        this.id = jpaEntity.getId(); // fixed
+        // this.rfc = jpaEntity.getRfc()!=null?jpaEntity.getRfc():null; // bug ?
+        this.rfc = jpaEntity.getRfc(); // fixed
+        // this.razonSocial = jpaEntity.getRazonSocial()!=null?jpaEntity.getRazonSocial():null; // bug ?
+        this.razonSocial = jpaEntity.getRazonSocial(); // fixed
+        // this.nombreEstablecimiento = jpaEntity.getNombreEstablecimiento()!=null?jpaEntity.getNombreEstablecimiento():null; // bug ?
+        this.nombreEstablecimiento = jpaEntity.getNombreEstablecimiento(); // fixed
+        // this.contacto = jpaEntity.getContacto()!=null?jpaEntity.getContacto():null; // bug ?
+        this.contacto = jpaEntity.getContacto(); // fixed
+        // this.telefonos = jpaEntity.getTelefonos()!=null?jpaEntity.getTelefonos():null; // bug ?
+        this.telefonos = jpaEntity.getTelefonos(); // fixed
+        // this.email = jpaEntity.getEmail()!=null?jpaEntity.getEmail():null; // bug ?
+        this.email = jpaEntity.getEmail(); // fixed
+        // this.observaciones = jpaEntity.getObservaciones()!=null?jpaEntity.getObservaciones():null; // bug ?
+        this.observaciones = jpaEntity.getObservaciones(); // fixed
+        // this.direccion = jpaEntity.getDireccion()!=null?jpaEntity.getDireccion():null; // bug ?
+        this.direccion = jpaEntity.getDireccion(); // fixed
     }
 	
     /** 

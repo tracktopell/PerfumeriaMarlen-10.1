@@ -33,7 +33,7 @@
 				digest="MD5" 
 				userRoleTable="USUARIO_PERFIL" 
 				roleNameCol="PERFIL_ID" 
-				userNameCol="USUARIO_ID" 				
+				userNameCol="EMAIL" 				
 				userTable="USUARIO"
 				userCredCol="PASSWORD" />
 </Context>

@@ -117,6 +117,18 @@ public class ProductoJPAController extends EntityJPAController<Producto> {
 		}
 	}
 
+	public List<AlmacenProducto> findAllValidProductosForSucursal(int sucursalId) {
+		EntityManager em = getEntityManager();
+		try {
+			Query q = em.createQuery("select ap from AlmacenProducto ap where ap.almacen.sucursal.id=:sucursalId and ap.cantidadActual>0 order by ap.producto.nombre, ap.producto.presentacion");
+			q.setParameter("sucursalId", sucursalId);
+			List<AlmacenProducto> resultList = (List<AlmacenProducto>) q.getResultList();
+			return resultList;
+		} finally {
+			em.close();
+		}
+	}
+
 	final static String queryDemanda =  "SELECT    COUNT(PV.ID) OTROS_PEDIDOS, "+
 			                            "          P.ID, " +
 										"          SUM(PVD.CANTIDAD) SUM_DEMANDA, " +

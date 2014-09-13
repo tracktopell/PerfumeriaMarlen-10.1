@@ -36,11 +36,11 @@ import javax.persistence.TemporalType;
  * 
  * @author Tracktopell::jpa-builder @see  https://github.com/tracktopell/UtilProjects/tree/master/jpa-builder
  * @version 0.8.5
- * @date 2014/08/27 07:01
+ * @date 2014/09/11 12:55
  */
 
 public class MovimientoOperativoAlmacenDetalle implements java.io.Serializable {
-    private static final long serialVersionUID = 1281816967;
+    private static final long serialVersionUID = 362764163;
     
     /**
     * id
@@ -72,10 +72,12 @@ public class MovimientoOperativoAlmacenDetalle implements java.io.Serializable {
      * JPA Entity Constructor
      */
     public MovimientoOperativoAlmacenDetalle(com.pmarlen.model.beans.MovimientoOperativoAlmacenDetalle jpaEntity) {
-        this.id = jpaEntity.getId();
-        this.movimientoOperativoAlmacenId = jpaEntity.getMovimientoOperativoAlmacen().getId(); // normalized 
-        this.productoId = jpaEntity.getProducto().getId(); // normalized 
-        this.cantidad = jpaEntity.getCantidad();
+        // this.id = jpaEntity.getId()!=null?jpaEntity.getId():null; // bug ?
+        this.id = jpaEntity.getId(); // fixed
+        this.movimientoOperativoAlmacenId = jpaEntity.getMovimientoOperativoAlmacen()!=null?jpaEntity.getMovimientoOperativoAlmacen().getId():null; // normalized 
+        this.productoId = jpaEntity.getProducto()!=null?jpaEntity.getProducto().getId():null; // normalized 
+        // this.cantidad = jpaEntity.getCantidad()!=null?jpaEntity.getCantidad():null; // bug ?
+        this.cantidad = jpaEntity.getCantidad(); // fixed
     }
 	
     /** 
@@ -126,8 +128,8 @@ public class MovimientoOperativoAlmacenDetalle implements java.io.Serializable {
         com.pmarlen.model.beans.MovimientoOperativoAlmacenDetalle jpaEntity = new com.pmarlen.model.beans.MovimientoOperativoAlmacenDetalle();
 
         jpaEntity.setId( this.getId());
-        jpaEntity.setMovimientoOperativoAlmacen( new com.pmarlen.model.beans.MovimientoOperativoAlmacen(this.getMovimientoOperativoAlmacenId())); // normalized
-        jpaEntity.setProducto( new com.pmarlen.model.beans.Producto(this.getProductoId())); // normalized
+        jpaEntity.setMovimientoOperativoAlmacen( this.getMovimientoOperativoAlmacenId()!=null? new com.pmarlen.model.beans.MovimientoOperativoAlmacen(this.getMovimientoOperativoAlmacenId()):null); // normalized
+        jpaEntity.setProducto( this.getProductoId()!=null? new com.pmarlen.model.beans.Producto(this.getProductoId()):null); // normalized
         jpaEntity.setCantidad( this.getCantidad());
 
         return jpaEntity;

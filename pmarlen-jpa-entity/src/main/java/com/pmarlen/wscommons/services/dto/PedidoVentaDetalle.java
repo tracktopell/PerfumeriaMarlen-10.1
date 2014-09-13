@@ -36,11 +36,11 @@ import javax.persistence.TemporalType;
  * 
  * @author Tracktopell::jpa-builder @see  https://github.com/tracktopell/UtilProjects/tree/master/jpa-builder
  * @version 0.8.5
- * @date 2014/08/27 07:01
+ * @date 2014/09/11 12:55
  */
 
 public class PedidoVentaDetalle implements java.io.Serializable {
-    private static final long serialVersionUID = 1183200438;
+    private static final long serialVersionUID = 189892739;
     
     /**
     * id
@@ -82,12 +82,15 @@ public class PedidoVentaDetalle implements java.io.Serializable {
      * JPA Entity Constructor
      */
     public PedidoVentaDetalle(com.pmarlen.model.beans.PedidoVentaDetalle jpaEntity) {
-        this.id = jpaEntity.getId();
-        this.pedidoVentaId = jpaEntity.getPedidoVenta().getId(); // normalized 
-        this.almacenId = jpaEntity.getAlmacen().getId(); // normalized 
-        this.productoId = jpaEntity.getProducto().getId(); // normalized 
-        this.cantidad = jpaEntity.getCantidad();
-        this.precioVenta = jpaEntity.getPrecioVenta();
+        // this.id = jpaEntity.getId()!=null?jpaEntity.getId():null; // bug ?
+        this.id = jpaEntity.getId(); // fixed
+        this.pedidoVentaId = jpaEntity.getPedidoVenta()!=null?jpaEntity.getPedidoVenta().getId():null; // normalized 
+        this.almacenId = jpaEntity.getAlmacen()!=null?jpaEntity.getAlmacen().getId():null; // normalized 
+        this.productoId = jpaEntity.getProducto()!=null?jpaEntity.getProducto().getId():null; // normalized 
+        // this.cantidad = jpaEntity.getCantidad()!=null?jpaEntity.getCantidad():null; // bug ?
+        this.cantidad = jpaEntity.getCantidad(); // fixed
+        // this.precioVenta = jpaEntity.getPrecioVenta()!=null?jpaEntity.getPrecioVenta():null; // bug ?
+        this.precioVenta = jpaEntity.getPrecioVenta(); // fixed
     }
 	
     /** 
@@ -154,9 +157,9 @@ public class PedidoVentaDetalle implements java.io.Serializable {
         com.pmarlen.model.beans.PedidoVentaDetalle jpaEntity = new com.pmarlen.model.beans.PedidoVentaDetalle();
 
         jpaEntity.setId( this.getId());
-        jpaEntity.setPedidoVenta( new com.pmarlen.model.beans.PedidoVenta(this.getPedidoVentaId())); // normalized
-        jpaEntity.setAlmacen( new com.pmarlen.model.beans.Almacen(this.getAlmacenId())); // normalized
-        jpaEntity.setProducto( new com.pmarlen.model.beans.Producto(this.getProductoId())); // normalized
+        jpaEntity.setPedidoVenta( this.getPedidoVentaId()!=null? new com.pmarlen.model.beans.PedidoVenta(this.getPedidoVentaId()):null); // normalized
+        jpaEntity.setAlmacen( this.getAlmacenId()!=null? new com.pmarlen.model.beans.Almacen(this.getAlmacenId()):null); // normalized
+        jpaEntity.setProducto( this.getProductoId()!=null? new com.pmarlen.model.beans.Producto(this.getProductoId()):null); // normalized
         jpaEntity.setCantidad( this.getCantidad());
         jpaEntity.setPrecioVenta( this.getPrecioVenta());
 

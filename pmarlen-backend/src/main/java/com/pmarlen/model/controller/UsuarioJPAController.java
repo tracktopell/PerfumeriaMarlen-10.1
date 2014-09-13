@@ -51,7 +51,7 @@ public class UsuarioJPAController extends EntityJPAController<Usuario>{
 
 	@Override
 	protected Object getEntityId(Usuario entity) {
-		return entity.getId();
+		return entity.getEmail();
 	}
 
 	/*@Override

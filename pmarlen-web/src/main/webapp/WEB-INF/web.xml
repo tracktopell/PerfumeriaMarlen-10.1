@@ -23,7 +23,7 @@
 			
 			afternoon,cupertino,cruze,redmond,start
 		-->
-		<param-value>cupertino</param-value>
+		<param-value>redmond</param-value>
 	</context-param>
 	
 	<!-- Welcome page -->
@@ -33,28 +33,37 @@
 
 	<!-- JSF mapping -->
 	<servlet>
-		<servlet-name>Faces Servlet</servlet-name>
+		<servlet-name>facesServlet</servlet-name>
 		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
+    <servlet>
+        <servlet-name>Logout</servlet-name>
+        <servlet-class>com.pmarlen.web.servlet.Logout</servlet-class>
+    </servlet>
 	
 	<!-- Map these files with JSF -->
 	<servlet-mapping>
-		<servlet-name>Faces Servlet</servlet-name>
+		<servlet-name>facesServlet</servlet-name>
 		<url-pattern>/faces/*</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>Faces Servlet</servlet-name>
+		<servlet-name>facesServlet</servlet-name>
 		<url-pattern>*.jsf</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>Faces Servlet</servlet-name>
+		<servlet-name>facesServlet</servlet-name>
 		<url-pattern>*.faces</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>Faces Servlet</servlet-name>
+		<servlet-name>facesServlet</servlet-name>
 		<url-pattern>*.xhtml</url-pattern>
 	</servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Logout</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+
 	<listener>
         <description>ServletContextListener, HttpSessionListener</description>
         <listener-class>com.pmarlen.web.servlet.ContextAndSessionListener</listener-class>
@@ -63,22 +72,7 @@
 		<param-name>javax.faces.CONFIG_FILES</param-name>
 		<param-value>/WEB-INF/faces-config.xml</param-value>
 	</context-param>
-	<!--
-	<servlet>
-		<servlet-name>Spring MVC Dispatcher Servlet</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<init-param>
-			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/web-application-config.xml</param-value>
-		</init-param>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
 	
-	<servlet-mapping>
-		<servlet-name>Spring MVC Dispatcher Servlet</servlet-name>
-		<url-pattern>/spring/*</url-pattern>
-	</servlet-mapping>
-	-->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
@@ -115,10 +109,11 @@
 		<form-login-config>
 			<!--
 			<form-login-page>/loginRealm.jsp</form-login-page>
-			<form-error-page>/loginRealm.jsp?error=ok</form-error-page>
+			<form-error-page>/loginRealm.jsp?error=ok</form-error-page>			
 			-->
 			<form-login-page>/login.jsp</form-login-page>
 			<form-error-page>/login.jsp?error=ok</form-error-page>
+			
 		</form-login-config>
 	</login-config>
 	<security-role>

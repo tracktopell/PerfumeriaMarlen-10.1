@@ -35,7 +35,7 @@ import javax.persistence.TemporalType;
  * m2m
  * @author Tracktopell::jpa-builder @see  https://github.com/tracktopell/UtilProjects/tree/master/jpa-builder
  * @version 0.8.5
- * @date 2014/08/27 07:01
+ * @date 2014/09/11 12:55
  */
 
 
@@ -43,7 +43,7 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "FORMA_DE_PAGO")
 public class FormaDePago implements java.io.Serializable {
-    private static final long serialVersionUID = 378589418;
+    private static final long serialVersionUID = 503783239;
     
     /**
     * id
