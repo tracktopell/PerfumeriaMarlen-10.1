@@ -4,9 +4,8 @@
  * and open the template in the editor.
  */
 
-package com.pmarlen.rest;
+package com.pmarlen.wscommons.services.dto;
 
-import com.pmarlen.wscommons.services.dto.*;
 import java.util.List;
 
 /**
@@ -30,6 +29,10 @@ public class PaqueteDeSincronizacionSucursalHija {
 
 	public PaqueteDeSincronizacionSucursalHija(int tipoTransaccion) {
 		this.tipoTransaccion = tipoTransaccion;
+	}
+
+	public PaqueteDeSincronizacionSucursalHija() {
+		this.tipoTransaccion = 0;
 	}
 
 	/**
@@ -212,6 +215,29 @@ public class PaqueteDeSincronizacionSucursalHija {
 	 */
 	public void setUsuarioList(List<Usuario> usuarioList) {
 		this.usuarioList = usuarioList;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append("PaqueteDeSincronizacionSucursalHija{\n");
+		sb.append("tipoTransaccion=").append(tipoTransaccion).append(";\n");
+		sb.append("lineaList=").append(lineaList.toString().replace(",","\n\t")).append(";\n");
+		sb.append("industriaList=").append(industriaList.toString().replace(",","\n\t")).append(";\n");
+		sb.append("marcaList=").append(marcaList.toString().replace(",","\n\t")).append(";\n");
+		sb.append("productoList=").append(productoList.toString().replace(",","\n\t")).append(";\n");
+		sb.append("almacenList=").append(almacenList.toString().replace(",","\n\t")).append(";\n");
+		sb.append("sucursalList=").append(sucursalList.toString().replace(",","\n\t")).append(";\n");
+		sb.append("almacenProductoList=").append(almacenProductoList.toString().replace(",","\n\t")).append(";\n");
+		sb.append("clienteList=").append(clienteList.toString().replace(",","\n\t")).append(";\n");
+		sb.append("metodoDePagoList=").append(metodoDePagoList.toString().replace(",","\n\t")).append(";\n");
+		sb.append("formaDePagoList=").append(formaDePagoList.toString().replace(",","\n\t")).append(";\n");
+		sb.append("perfilList=").append(perfilList.toString().replace(",","\n\t")).append(";\n");
+		sb.append("usuarioList=").append(usuarioList.toString().replace(",","\n\t")).append(";\n");
+		sb.append("}\n");
+		
+		return sb.toString(); //To change body of generated methods, choose Tools | Templates.
 	}
 	
 }

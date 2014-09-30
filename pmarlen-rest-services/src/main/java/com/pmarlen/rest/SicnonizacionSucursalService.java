@@ -6,11 +6,11 @@
 
 package com.pmarlen.rest;
 
+import com.pmarlen.wscommons.services.dto.PaqueteDeSincronizacionSucursalHija;
 import com.pmarlen.model.controller.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.pmarlen.wscommons.services.dto.*;
 import java.util.ArrayList;
 import java.util.List;
 import org.slf4j.Logger;
@@ -100,6 +100,7 @@ public class SicnonizacionSucursalService {
 
 	@RequestMapping(value = "getAllOfSucursal", method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody PaqueteDeSincronizacionSucursalHija getAllOfSucursal(@RequestParam(value = "sucursalId",required = false,defaultValue = "1") Integer sucursalId) {	
+		long t0=System.currentTimeMillis();
 		logger.info("->getAllOfAlmacen invoked: sucursalId="+sucursalId);
 		
 		PaqueteDeSincronizacionSucursalHija result = new PaqueteDeSincronizacionSucursalHija(sucursalId);
@@ -239,7 +240,8 @@ public class SicnonizacionSucursalService {
 			logger.debug("->jpaUsuarioList \tadd dto:"+dtoUsuario);
 		}
 		result.setUsuarioList(resultUsuarioList);
-		
+		long t1=System.currentTimeMillis();
+		logger.info("->getAllOfSucursal: T=:"+(t1-t0)+" ms.");
 		return result;
 	}
 }

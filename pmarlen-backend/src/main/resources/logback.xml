@@ -2,7 +2,7 @@
 
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <layout class="ch.qos.logback.classic.PatternLayout">
-            <Pattern>CO %d{yyyy/MM/dd HH:mm:ss} %-5p %c - %msg%n</Pattern>
+            <Pattern>CO@%d{yyyy/MM/dd HH:mm:ss} %-5p %c - %msg%n</Pattern>
         </layout>
     </appender>
 	
@@ -15,7 +15,7 @@
     </appender>
 	
 	<logger name="com.pmarlen" additivity="false">
-		<level value="DEBUG" />
+		<level value="INFO" />
 		
 		<appender-ref ref="CONSOLE" />
 	</logger>
